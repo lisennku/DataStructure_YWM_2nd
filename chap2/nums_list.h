@@ -6,16 +6,19 @@
 #define SEQUENCE_LIST_H
 
 #include "basic.h"  // global status definition
+#include <stdbool.h>
 
 
 
 #define MAX_SIZE 100
 
-struct item {
+// struct item {
+//
+// };
+//
+// typedef struct item Item;
 
-};
-
-typedef struct item Item;
+typedef int Item;
 
 // sequence list using array to represent
 struct seq_list {
@@ -25,12 +28,12 @@ struct seq_list {
 
 typedef struct seq_list SqList;
 
-// sequence list functions
+// sequence list functions prototype
 Status InitialSeqList(SqList * l);
 
-Status ListSeqEmpty(SqList * l);
+bool ListSeqEmpty(SqList l);
 
-int ListSeqLength(SqList * L);
+int ListSeqLength(SqList l);
 
 Status GetSeqElem(SqList l, int i, Item * e);
 
@@ -47,16 +50,17 @@ struct linked_node {
 	struct linked_node * next;
 };
 
-typedef struct linked_ndoe LNode;
+typedef struct linked_node LNode;
 typedef struct linked_node * LinkList;
 
+// linked list functions prototype
 Status InitialLinkList(LinkList * l);
 
-Status ListLinkEmpty(LinkList * l);
+bool ListLinkEmpty(LinkList * l);
 
 int ListLinkLength(LinkList * l);
 
-Status GetLinkElem(LinkList * l, int i, Item * e);
+Status GetLinkElem(LinkList * l, int i, Item e);
 
 LNode * LocateLinkElem(LinkList * l, Item e);
 
@@ -67,6 +71,9 @@ Status ListLinkDelete(LinkList * l, int i);
 void CreateLinkList_H(LinkList * l, int n);
 
 void CreateLinkList_T(LinkList * l, int n);
+
+
+
 
 
 
