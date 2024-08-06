@@ -8,5 +8,5 @@ add_executable(DataStructure_YWM_2nd
         basic.h
         chap2/nums_list.h
         chap2/nums_list.c
-        chap2/nums_list_test.c
+#        chap2/nums_list_test.c
         chap2/merge_list.c)
