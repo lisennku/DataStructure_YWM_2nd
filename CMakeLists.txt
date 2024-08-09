@@ -10,5 +10,6 @@ add_executable(DataStructure_YWM_2nd
         chap2/single_linked_list.h
         chap2/loop_list.h
         chap2/two_direct_list.h
+        chap2/array_list.c
 )
 
