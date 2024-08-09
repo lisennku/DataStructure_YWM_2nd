@@ -56,8 +56,15 @@ build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/array_list.c.obj: C_COMPILER__D
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
   OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap2
 
-build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/array_list_merge.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/array_list_merge.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
-  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\array_list_merge.c.obj.d
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/single_linked_list.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/single_linked_list.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\single_linked_list.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
+  OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
+  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap2
+
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/single_linked_list_test.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/single_linked_list_test.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\single_linked_list_test.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
@@ -71,7 +78,7 @@ build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/array_list_merge.c.obj: C_COMPI
 #############################################
 # Link the executable DataStructure_YWM_2nd.exe
 
-build DataStructure_YWM_2nd.exe: C_EXECUTABLE_LINKER__DataStructure_YWM_2nd_Debug CMakeFiles/DataStructure_YWM_2nd.dir/chap2/array_list.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap2/array_list_merge.c.obj
+build DataStructure_YWM_2nd.exe: C_EXECUTABLE_LINKER__DataStructure_YWM_2nd_Debug CMakeFiles/DataStructure_YWM_2nd.dir/chap2/array_list.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap2/single_linked_list.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap2/single_linked_list_test.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir

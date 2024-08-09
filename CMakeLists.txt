@@ -11,6 +11,8 @@ add_executable(DataStructure_YWM_2nd
         chap2/loop_list.h
         chap2/two_direct_list.h
         chap2/array_list.c
-        chap2/array_list_merge.c
+#        chap2/array_list_merge.c
+        chap2/single_linked_list.c
+        chap2/single_linked_list_test.c
 )
 
