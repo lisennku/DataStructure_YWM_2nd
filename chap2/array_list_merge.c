@@ -104,10 +104,12 @@ void ordered_array_list_merge(array_list src1, array_list src2, array_list * res
 	result->elem = (Item *) malloc(sizeof(Item) * lr);
 	result->length = lr;
 
+	// 使用指针表示，方便赋值等操作
 	Item * p1 = src1.elem;
 	Item * p2 = src2.elem;
 	Item * pr = result->elem;
 
+	// 最后一个元素的指针指向的地址，指针+1，是按照指向的类型的字节数*1增加
 	Item * p1_last = src1.elem + l1 - 1;
 	Item * p2_last = src2.elem + l2 - 1;
 	Item * pr_last = result->elem + lr - 1;
@@ -118,6 +120,9 @@ void ordered_array_list_merge(array_list src1, array_list src2, array_list * res
 		else
 			*pr++ = *p2++;
 	}
+
+	// 前述while循环，当p1到达最后或者p2到达最后，跳出
+	// 下面两个while循环，将剩余的一个没有循环完毕的指针继续循环，直到完毕
 
 	while (p1 <= p1_last)
 		*pr++ = *p1++;
