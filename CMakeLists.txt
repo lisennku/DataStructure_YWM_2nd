@@ -4,12 +4,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 set(CMAKE_C_STANDARD 11)
 
 add_executable(DataStructure_YWM_2nd
-        main.c
+#        main.c
         basic.h
         chap2/array_list.h
         chap2/single_linked_list.h
         chap2/loop_list.h
         chap2/two_direct_list.h
         chap2/array_list.c
+        chap2/array_list_merge.c
 )
 

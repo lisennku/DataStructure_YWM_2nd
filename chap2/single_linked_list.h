@@ -14,4 +14,6 @@ struct node {
 typedef struct node Node;
 typedef Node * Single_linked_list;
 
+
+
 #endif //SINGLE_LINKED_LIST_H
