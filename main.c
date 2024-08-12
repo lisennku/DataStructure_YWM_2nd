@@ -4,10 +4,11 @@
 
 int main(void)
 {
-    Single_linked_list sll;
-    Node * head_node = (Node *) malloc(sizeof(Node));
-    head_node->next = NULL;
-    sll = head_node;
-    printf("sll points to %p\n", sll);
-    printf("sll's address is %p\n", &sll);
+    int a = 10;
+    int *b = &a;
+    int **c = &b;
+    printf("address for variable a, b, c is %p, %p, %p\n", &a, &b, &c);
+    printf("value for variable b is %p\n", b);
+    printf("value for variable c is %p\n", c);
+    printf("value for *c is %p\n", *c);
 }
