@@ -13,6 +13,7 @@ add_executable(DataStructure_YWM_2nd
         chap2/array_list.c
 #        chap2/array_list_merge.c
         chap2/single_linked_list.c
-        chap2/single_linked_list_test.c
+        chap2/single_linked_list_merge.c
+        #        chap2/single_linked_list_test.c
 )
 

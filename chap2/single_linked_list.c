@@ -194,6 +194,7 @@ Status single_linked_list_insert_element(single_linked_list * l, int position, I
 
 	// 此时p已经指向了position-1
 	Node * new = (Node *) malloc(sizeof(Node));
+	new->item = e;
 
 	// 将position - 1位置的下一个位置的地址，赋值给new->next
 	// ！！如下两步的顺序不可能改！！
@@ -232,7 +233,41 @@ Status single_linked_list_delete_element(single_linked_list * l, int position) {
 }
 
 // 创建单向链表，采取前插法，也即新增节点插入到头结点后
-void single_linked_list_create_from_head(single_linked_list * l, int size);
+void single_linked_list_create_from_head(single_linked_list * l, int size) {
+	// 初始化空链表
+	(*l) = (Node *) malloc (sizeof(Node));
+	if((*l) == NULL)
+		exit(EXIT_FAILURE);
+	(*l)->next = NULL;
+
+	srand(0);
+	for(int i = 0; i < size; i++) {
+		Node * p = (Node *) malloc(sizeof(Node));
+		p->item = rand() % 100 + 1;
+		p->next = (*l)->next;  // 表示将现有的整个链表（除头结点外），都放到新加的结点后边
+		(*l)->next = p;        // 将头结点的next属性改为新结点
+	}
+}
 
 // 创建单向链表，采取后插法，也即新增节点插入到尾部
-void single_linked_list_create_from_tail(single_linked_list * l, int size);
+void single_linked_list_create_from_tail(single_linked_list * l, int size) {
+	// 初始化空链表
+	(*l) = (Node *) malloc (sizeof(Node));
+	if((*l) == NULL)
+		exit(EXIT_FAILURE);
+	(*l)->next = NULL;
+
+	Node * rear = * l;   // 空链表，所以尾指针指向位置和头指针相同
+
+	srand(0);
+	for(int i = 0; i < size; i++) {
+		Node * p = (Node *) malloc(sizeof(Node));
+		p->item = rand() % 100 + 1;
+		p->next = NULL;               // 新结点作为末尾插入，所以next为NULL
+		rear->next = p;               // 新结点作为末尾插入，所以要将rear尾指针的next设置为新结点的地址
+		rear = p;                     // 新结点插入后，移动尾指针到新的最后的位置
+
+	}
+
+
+}
