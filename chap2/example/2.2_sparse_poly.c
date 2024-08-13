@@ -38,8 +38,12 @@ int main() {
 	// printf("Now display merged poly\n");
 	// ShowSparsePoly(p1);
 
-	SparsePolyMinus(&p1, &p2);
-	printf("Now display minused poly\n");
+	// SparsePolyMinus(&p1, &p2);
+	// printf("Now display minused poly\n");
+	// ShowSparsePoly(p1);
+
+	SparsePolyMulti(&p1, &p2);
+	printf("Now display multiplied poly\n");
 	ShowSparsePoly(p1);
 }
 
@@ -156,7 +160,33 @@ void SparsePolyMinus(Polynomial * lpoly, Polynomial * rpoly) {
 }
 
 void SparsePolyMulti(Polynomial * lpoly, Polynomial * rpoly) {
+	Polynomial result = InitialPoly();
 
+	PNode * p2 = (*rpoly)->next;
+
+	while(p2 != NULL) {  // 遍历rpoly， 用rpoly中的每项，乘以lpoly中的每项，将乘后的每项放到tmp链表，每次循环rpoly后，使用Plus函数将result和tmp相加
+		PNode * p1 = (*lpoly)->next;
+
+		Polynomial tmp = InitialPoly();
+		PNode * rear = tmp;
+
+		while(p1 != NULL) {
+			PNode * mul = (PNode *) malloc(sizeof(PNode));
+			if(!mul)
+				exit(OVERFLOW);
+			mul->coef = p1->coef * p2->coef;
+			mul->expo = p1->expo + p2->expo;
+			mul->next = NULL;
+
+			rear->next = mul;
+			rear = mul;
+
+			p1 = p1->next;
+		}
+		SparsePolyPlus(&result, &tmp);
+		p2 = p2->next;
+	}
+	*lpoly = result;
 }
 
 void ShowSparsePoly(Polynomial poly) {
