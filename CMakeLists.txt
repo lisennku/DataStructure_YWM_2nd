@@ -13,7 +13,8 @@ add_executable(DataStructure_YWM_2nd
         chap2/array_list.c
 #        chap2/array_list_merge.c
         chap2/single_linked_list.c
-        chap2/example/2.1_array_unary_poly.c
+#        chap2/example/2.1_array_unary_poly.c
+        chap2/example/2.2_sparse_poly.c
         #        chap2/single_linked_list_merge.c
         #        chap2/single_linked_list_test.c
 )
