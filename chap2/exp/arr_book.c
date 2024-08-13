@@ -32,13 +32,18 @@ void init_books(Booklist * list);
 void add_books(Booklist * list);
 void show_books(Booklist list);
 void sort_books_by_price_desc(Booklist *list);
+double calc_books_avg_price(Booklist l);
+void change_books_price(Booklist *l);
 
 int main() {
 	Booklist l;
 	init_books(&l);
 	add_books(&l);
 	// show_books(l);
-	sort_books_by_price_desc(&l);
+	// sort_books_by_price_desc(&l);
+	double avg = calc_books_avg_price(l);
+	change_books_price(&l);
+	printf("%.2lf\n", avg);
 	show_books(l);
 }
 
@@ -89,3 +94,41 @@ void sort_books_by_price_desc(Booklist * list) {
 		}
 	}
 }
+double calc_books_avg_price(Booklist l) {
+	double total_price = 0.0;
+	for(int i = 0; i < l.size; i ++)
+		total_price += l.elem[i].price;
+	return total_price / l.size;
+}
+void change_books_price(Booklist *l) {
+	double avg = calc_books_avg_price(*l);
+	for(int i = 0; i < l->size; i++) {
+		if(l->elem[i].price < avg)
+			l->elem[i].price *= 1.2;
+		else {
+			l->elem[i].price *= 1.1;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
