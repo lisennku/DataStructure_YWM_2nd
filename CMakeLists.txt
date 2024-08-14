@@ -21,6 +21,7 @@ add_executable(DataStructure_YWM_2nd
 #        chap2/exp/221.c
 #        chap2/exp/222.c
         chap2/exp/223.c
+        chap2/leetcode/easy/21-merge-two-sorted-lists.c
         #        chap2/example/2.1_array_unary_poly.c
 #        chap2/example/2.2_sparse_poly.c
 #        chap2/exp/arr_book.c

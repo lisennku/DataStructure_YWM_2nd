@@ -39,7 +39,7 @@ CMAKE_CODEBLOCKS_MAKE_ARGUMENTS:STRING=
 CMAKE_COLOR_DIAGNOSTICS:BOOL=ON
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=C:/Users/lisen/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe
+CMAKE_C_COMPILER:STRING=C:/Users/lisen/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -244,7 +244,7 @@ CMAKE_CACHEFILE_DIR:INTERNAL=c:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=28
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=29
 //Patch version of cmake used to create the current loaded cache
 CMAKE_CACHE_PATCH_VERSION:INTERNAL=6
 //Path to CMake executable.
@@ -344,7 +344,7 @@ CMAKE_RC_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_READELF
 CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=C:/Users/lisen/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.28
+CMAKE_ROOT:INTERNAL=C:/Users/lisen/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
