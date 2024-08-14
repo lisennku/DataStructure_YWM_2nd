@@ -42,6 +42,9 @@ void input_find_books_name(int n, char arr[n][MAX_TITL]);
 void show_most_favourite_books(Booklist l, int n, char arr[n][MAX_TITL]);
 void input_best_position(int n, int arr[]);
 void show_best_position_book(Booklist l, int n, int arr[]);
+void new_book_insert(Booklist *l );
+void delete_book(Booklist *l);
+void drop_duplicated(Booklist *l);
 
 int main() {
 	Booklist l;
@@ -58,14 +61,19 @@ int main() {
 	add_books_with_n(&l, nums);
 	// reverse_show_books(l);
 	// show_most_expensive_books(l);
-	int loop;
-	scanf("%d", &loop);
+	// int loop;
+	// scanf("%d", &loop);
 	// char books_name[loop][MAX_TITL];
 	// input_find_books_name(loop, books_name);
 	// show_most_favourite_books(l, loop, books_name);
-	int arr[loop];
-	input_best_position(loop, arr);
-	show_best_position_book(l, loop, arr);
+	// int arr[loop];
+	// input_best_position(loop, arr);
+	// show_best_position_book(l, loop, arr);
+	// new_book_insert(&l);
+
+	// delete_book(&l);
+	drop_duplicated(&l);
+	show_books(l);
 
 
 }
@@ -225,8 +233,72 @@ void show_best_position_book(Booklist l, int n, int arr[]) { // 问题7
 			printf("%s %s %.2lf\n", l.elem[arr[i] - 1].isbn, l.elem[arr[i] - 1].titl, l.elem[arr[i] - 1].price);
 	}
 }
+void new_book_insert(Booklist *l) { // 问题8
+	int position;
+	char isbn[MAX_ISBN];
+	char titl[MAX_TITL];
+	double price;
 
+	scanf("%d", &position);
+	scanf("%s %s %lf", isbn, titl, &price);
 
+	if(position <= 0 || position > l->size + 1)
+		printf("Sorry，the position to be inserted is invalid!\n");
+	else {
+		for(int i = l->size - 1; i >= position - 1; i--) {
+			l->elem[i+1] = l->elem[i];
+		}
+
+		l->elem[position - 1].price = price;
+		strcpy(l->elem[position - 1].isbn, isbn);
+		strcpy(l->elem[position - 1].titl, titl);
+
+		l->size ++;
+		show_books(*l);
+	}
+
+}
+void delete_book(Booklist *l) {  // 问题9
+	int position;
+	scanf("%d", &position);
+	if(position <= 0 || position > l->size)
+		printf("Sorry，the position to be deleted is invalid!");
+	else {
+		for(int i = position; i < l->size; i++) {
+			l->elem[i - 1] = l->elem[i];
+		}
+		l->size--;
+		show_books(*l);
+	}
+}
+void drop_duplicated(Booklist *l) {
+	// 不在循环中删除，删除会导致长度变短，而两次循环时长度是固定的，会导致访问到没有赋值的数组元素
+	// 记录要删除的位置，最后统一删除
+	int position[MAX_SIZE];
+	int idx = 0;
+	for(int i = 0; i < l->size; i++) {
+		for(int j = i + 1; j < l->size; j++) {
+			if(strcmp(l->elem[i].isbn, l->elem[j].isbn) == 0) {
+				strcpy(l->elem[j].isbn, "to be deleted");
+			}
+		}
+	}
+
+	for(int i = 0; i < l->size; i ++) {
+		if(strcmp(l->elem[i].isbn, "to be deleted") == 0) {
+			position[idx] = i+1;
+			idx++;
+		}
+	}
+
+	for(int i = 0; i < idx; i ++) {
+		for(int j = position[i]; j < l->size; j++) {
+			l->elem[j - 1] = l->elem[j];
+		}
+		l->size --;
+	}
+	printf("%d\n", l->size);
+}
 
 
 
