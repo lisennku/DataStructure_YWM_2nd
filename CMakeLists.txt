@@ -12,6 +12,7 @@ add_executable(DataStructure_YWM_2nd
         chap2/ds/loop_list.c
         chap2/ds/loop_list_test.c
         chap2/leetcode/easy/160-intersection-of-two-linked-lists.c
+        chap2/leetcode/easy/203-remove-linked-list-elements.c
         #        chap2/ds/two_direct_list.h
 #        chap2/ds/array_list.c
 #        chap2/array_list_merge.c
