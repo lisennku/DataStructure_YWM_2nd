@@ -49,19 +49,19 @@ cmake_ninja_workdir = C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/cmake-
 
 build cmake_object_order_depends_target_DataStructure_YWM_2nd: phony || CMakeFiles/DataStructure_YWM_2nd.dir
 
-build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/array_list.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/array_list.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
-  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\array_list.c.obj.d
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/ds/array_list.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/ds/array_list.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\ds\array_list.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
-  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap2
+  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\ds
 
-build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/single_linked_list.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/single_linked_list.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
-  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\single_linked_list.c.obj.d
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/ds/single_linked_list.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/ds/single_linked_list.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\ds\single_linked_list.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
-  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap2
+  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\ds
 
 build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/exp/223.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/exp/223.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
   DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\exp\223.c.obj.d
@@ -69,6 +69,20 @@ build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/exp/223.c.obj: C_COMPILER__Data
   INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
   OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\exp
+
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/leetcode/easy/21-merge-two-sorted-lists.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/leetcode/easy/21-merge-two-sorted-lists.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\leetcode\easy\21-merge-two-sorted-lists.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
+  OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
+  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\leetcode\easy
+
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/leetcode/easy/remove-duplicates-from-sorted-list.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap2/leetcode/easy/remove-duplicates-from-sorted-list.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\leetcode\easy\remove-duplicates-from-sorted-list.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
+  OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
+  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap2\leetcode\easy
 
 
 # =============================================================================
@@ -78,7 +92,7 @@ build CMakeFiles/DataStructure_YWM_2nd.dir/chap2/exp/223.c.obj: C_COMPILER__Data
 #############################################
 # Link the executable DataStructure_YWM_2nd.exe
 
-build DataStructure_YWM_2nd.exe: C_EXECUTABLE_LINKER__DataStructure_YWM_2nd_Debug CMakeFiles/DataStructure_YWM_2nd.dir/chap2/array_list.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap2/single_linked_list.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap2/exp/223.c.obj
+build DataStructure_YWM_2nd.exe: C_EXECUTABLE_LINKER__DataStructure_YWM_2nd_Debug CMakeFiles/DataStructure_YWM_2nd.dir/chap2/ds/array_list.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap2/ds/single_linked_list.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap2/exp/223.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap2/leetcode/easy/21-merge-two-sorted-lists.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap2/leetcode/easy/remove-duplicates-from-sorted-list.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
