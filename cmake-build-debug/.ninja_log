@@ -1,6 +1,6 @@
 # ninja log v6
 4	180	7457514929048240	CMakeFiles/DataStructure_YWM_2nd.dir/main.c.obj	9b7621b59fc50106
-2	407	7457611694289143	build.ninja	42852ab3f206cc35
+2	407	7457636652281524	build.ninja	42852ab3f206cc35
 181	385	7457514930805720	DataStructure_YWM_2nd.exe	6ca5c61ebe46816d
 5	203	7454081181290374	CMakeFiles/DataStructure_YWM_2nd.dir/chap2/ds/loop_list_test.c.obj	e2f30944c3504576
 126	1238	7457514132749897	CMakeFiles/DataStructure_YWM_2nd.dir/chap2/leetcode/easy/234-palindrome-linked-list.c.obj	2ccb9d404a79dee4
@@ -10,3 +10,16 @@
 53	1274	7457514132030631	CMakeFiles/DataStructure_YWM_2nd.dir/chap2/leetcode/easy/203-remove-linked-list-elements.c.obj	142578e714adee6b
 5	188	7457514443953819	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_stack.c.obj	72b741ff79eb809a
 1240	1462	7457514143895406	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_stack.c.obj	409a7b9eae34e44
+3	631	7457636652281524	build.ninja	42852ab3f206cc35
+8	361	7457636653151520	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_loop_queue.c.obj	5e150ac22f6124fb
+44	383	7457636653501567	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_queue.c.obj	89b4f6007b163ad
+81	446	7457636653871544	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/example/3.1_base_convert.c.obj	252e907f945da8a4
+6	216	7457638805341123	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_stack.c.obj	409a7b9eae34e44
+30	228	7457638805571153	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/example/3.1_base_convert.c.obj	252e907f945da8a4
+228	463	7457638807557361	DataStructure_YWM_2nd.exe	ac2cb577062d8f31
+4	176	7457640110932030	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/example/3.1_base_convert.c.obj	252e907f945da8a4
+176	402	7457640112652701	DataStructure_YWM_2nd.exe	ac2cb577062d8f31
+5	173	7457640216025083	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/example/3.1_base_convert.c.obj	252e907f945da8a4
+174	395	7457640217713392	DataStructure_YWM_2nd.exe	ac2cb577062d8f31
+5	194	7457640422668976	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/example/3.1_base_convert.c.obj	252e907f945da8a4
+195	427	7457640424576060	DataStructure_YWM_2nd.exe	ac2cb577062d8f31
