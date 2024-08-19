@@ -70,6 +70,20 @@ build CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_stack.c.obj: C_COMPIL
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
   OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap3\ds
 
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_loop_queue.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap3/ds/array_loop_queue.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap3\ds\array_loop_queue.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
+  OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
+  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap3\ds
+
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_queue.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap3/ds/linked_queue.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap3\ds\linked_queue.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
+  OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
+  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap3\ds
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target DataStructure_YWM_2nd
@@ -78,7 +92,7 @@ build CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_stack.c.obj: C_COMPIL
 #############################################
 # Link the executable DataStructure_YWM_2nd.exe
 
-build DataStructure_YWM_2nd.exe: C_EXECUTABLE_LINKER__DataStructure_YWM_2nd_Debug CMakeFiles/DataStructure_YWM_2nd.dir/main.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_stack.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_stack.c.obj
+build DataStructure_YWM_2nd.exe: C_EXECUTABLE_LINKER__DataStructure_YWM_2nd_Debug CMakeFiles/DataStructure_YWM_2nd.dir/main.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_stack.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_stack.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_loop_queue.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_queue.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir

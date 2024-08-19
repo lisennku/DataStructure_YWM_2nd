@@ -19,6 +19,10 @@ add_executable(DataStructure_YWM_2nd
         chap3/ds/array_stack.c
         chap3/ds/linked_stack.h
         chap3/ds/linked_stack.c
+        chap3/ds/array_loop_queue.h
+        chap3/ds/array_loop_queue.c
+        chap3/ds/linked_queue.h
+        chap3/ds/linked_queue.c
         #        chap2/ds/two_direct_list.h
 #        chap2/ds/array_list.c
 #        chap2/array_list_merge.c
