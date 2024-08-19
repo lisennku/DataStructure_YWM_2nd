@@ -4,17 +4,21 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 set(CMAKE_C_STANDARD 11)
 
 add_executable(DataStructure_YWM_2nd
-#        main.c
+        main.c
         basic.h
 #        chap2/ds/array_list.h
 #        chap2/ds/single_linked_list.h
-        chap2/ds/loop_list.h
-        chap2/ds/loop_list.c
-        chap2/ds/loop_list_test.c
-        chap2/leetcode/easy/160-intersection-of-two-linked-lists.c
-        chap2/leetcode/easy/203-remove-linked-list-elements.c
-        chap2/leetcode/easy/206-reverse-linked-list.c
-        chap2/leetcode/easy/234-palindrome-linked-list.c
+#        chap2/ds/loop_list.h
+#        chap2/ds/loop_list.c
+#        chap2/ds/loop_list_test.c
+#        chap2/leetcode/easy/160-intersection-of-two-linked-lists.c
+#        chap2/leetcode/easy/203-remove-linked-list-elements.c
+#        chap2/leetcode/easy/206-reverse-linked-list.c
+#        chap2/leetcode/easy/234-palindrome-linked-list.c
+        chap3/ds/array_stack.h
+        chap3/ds/array_stack.c
+        chap3/ds/linked_stack.h
+        chap3/ds/linked_stack.c
         #        chap2/ds/two_direct_list.h
 #        chap2/ds/array_list.c
 #        chap2/array_list_merge.c
