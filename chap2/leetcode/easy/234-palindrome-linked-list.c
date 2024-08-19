@@ -14,6 +14,7 @@ struct ListNode {
 typedef struct ListNode Node;
 typedef struct ListNode * List;
 
+#if 0
 struct ListNode* reverseList(struct ListNode* head) {
     Node * prev = NULL;
     Node * cur = head;
@@ -63,4 +64,25 @@ bool isPalindrome(struct ListNode* head) {
     // 还原链表并返回结果
     firstHalfEnd->next = reverseList(secondHalfStart);
     return result;
+}
+#endif
+
+// recursive
+// 整体思路是递归到最后返回最后一个结点，比较，然后再返回倒数第二个，以此类推
+Node * front;
+
+bool recursiveCheck(struct ListNode * curr) {
+    if(curr != NULL) {
+        if(!recursiveCheck(curr->next))
+            return false;
+        if(front->val != curr->val)
+            return false;
+        front = front->next;
+    }
+    return true; // 边界条件，遍历到链表尾部
+}
+
+bool isPalindrome(struct ListNode* head) {
+    front = head;
+    return recursiveCheck(head);
 }
