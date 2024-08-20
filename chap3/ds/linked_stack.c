@@ -57,8 +57,9 @@ Status linked_stack_pop(Linked_Stack * s, Item * e) {
         return ERROR;
     *e = (*s)->data;
     SNode * del = *s;
-    free(del);
     *s = (*s)->next;
+    free(del);
+
     return OK;
 }
 // 遍历栈
