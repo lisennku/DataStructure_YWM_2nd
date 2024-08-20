@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 #include <stdlib.h>
 
 // 将编号为n的圆盘从A移到C
@@ -23,6 +23,14 @@ void Hanoi(int n,char A,char B,char C)
 }
 int main(void)
 {
-    char A = 'A', B = 'B', C = 'C';
-    Hanoi(4, A, B, C);
+    // char A = 'A', B = 'B', C = 'C';
+    // Hanoi(4, A, B, C);
+    const char str[] = "Hello, world!";
+    size_t length;
+
+    // 计算直到遇到逗号或空格前的字符数
+    length = strspn(str, "Hw");
+    printf("Length of prefix matching 'Helo': %zu\n", length);
+
+    return 0;
 }
