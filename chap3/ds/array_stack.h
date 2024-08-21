@@ -7,9 +7,11 @@
 #include <stdbool.h>
 #include "basic.h"
 
-#define MAX_SIZE 100
+#define MAX_SIZE 2
 
 typedef int Item;
+// typedef double Item;
+
 struct stack {
     Item * base;              // 永远指向栈底
     Item * top ;              // 指向栈顶
