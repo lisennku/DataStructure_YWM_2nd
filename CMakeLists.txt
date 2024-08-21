@@ -33,6 +33,7 @@ add_executable(DataStructure_YWM_2nd
 #        "chap3/exercise/algo design/3-integer_stack.c"
 #        "chap3/exercise/algo design/5-stack_io_legal_ascertain.c"
         chap3/exp/240.c
+        chap3/exp/247.c
         #        chap2/ds/two_direct_list.h
 #        chap2/ds/array_list.c
 #        chap2/array_list_merge.c
