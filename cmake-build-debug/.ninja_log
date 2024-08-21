@@ -1,7 +1,7 @@
 # ninja log v6
 4	161	7458338218775318	CMakeFiles/DataStructure_YWM_2nd.dir/main.c.obj	9b7621b59fc50106
-2	399	7459232877994147	build.ninja	42852ab3f206cc35
-181	446	7459215597777919	DataStructure_YWM_2nd.exe	992cb864e69b64e5
+2	424	7459322930436921	build.ninja	42852ab3f206cc35
+172	393	7459233029051277	DataStructure_YWM_2nd.exe	37a216be01360dc3
 5	203	7454081181290374	CMakeFiles/DataStructure_YWM_2nd.dir/chap2/ds/loop_list_test.c.obj	e2f30944c3504576
 126	1238	7457514132749897	CMakeFiles/DataStructure_YWM_2nd.dir/chap2/leetcode/easy/234-palindrome-linked-list.c.obj	2ccb9d404a79dee4
 4	198	7454076773615319	CMakeFiles/DataStructure_YWM_2nd.dir/chap2/ds/loop_list.c.obj	a78a0e4e8e6a1bd9
@@ -10,8 +10,8 @@
 53	1274	7457514132030631	CMakeFiles/DataStructure_YWM_2nd.dir/chap2/leetcode/easy/203-remove-linked-list-elements.c.obj	142578e714adee6b
 4	359	7459214729977090	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_stack.c.obj	72b741ff79eb809a
 4	172	7458172852060113	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_stack.c.obj	409a7b9eae34e44
-30	367	7459135928157604	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exercise/algo_design/2-palindrome-stack-judge.c.obj	e95204094d3f4e1
 27	294	7459106686198427	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_loop_queue.c.obj	5e150ac22f6124fb
+30	367	7459135928157604	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exercise/algo_design/2-palindrome-stack-judge.c.obj	e95204094d3f4e1
 44	383	7457636653501567	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_queue.c.obj	89b4f6007b163ad
 7	199	7458175393955373	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/example/3.1_base_convert.c.obj	252e907f945da8a4
 4	181	7458205890690717	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/example/3.2_bracket_match.c.obj	517c4fddf6707d6e
@@ -19,8 +19,19 @@
 5	865	7459099185260003	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exercise/algo_design/1-double_stack_in_one_array.c.obj	f6c59856cce86d88
 25	356	7459214730177089	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exercise/algo_design/4-postfix_expression_calc.c.obj	bc9fe6a6069bcb1f
 4	180	7459215596016114	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exercise/algo_design/3-integer_stack.c.obj	5f387cc18ff0ee0c
-4	176	7459232595178316	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exercise/algo_design/5-stack_io_legal_ascertain.c.obj	7842ff90428add20
-2	424	7459232877994147	build.ninja	42852ab3f206cc35
-4	203	7459232878569638	DataStructure_YWM_2nd.exe	37a216be01360dc3
 4	171	7459233027371308	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exercise/algo_design/5-stack_io_legal_ascertain.c.obj	7842ff90428add20
-172	393	7459233029051277	DataStructure_YWM_2nd.exe	37a216be01360dc3
+4	259	7459322773926599	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exp/240.c.obj	282fd5a7b7a31b08
+2	392	7459322930436921	build.ninja	42852ab3f206cc35
+3	192	7459322930926921	DataStructure_YWM_2nd.exe	effa7234f76f32a
+4	188	7459323611149521	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exp/240.c.obj	282fd5a7b7a31b08
+189	407	7459323612985250	DataStructure_YWM_2nd.exe	effa7234f76f32a
+6	286	7459325958427007	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exp/240.c.obj	282fd5a7b7a31b08
+286	575	7459325961229030	DataStructure_YWM_2nd.exe	effa7234f76f32a
+6	262	7459326334141099	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exp/240.c.obj	282fd5a7b7a31b08
+263	546	7459326336709475	DataStructure_YWM_2nd.exe	effa7234f76f32a
+5	253	7459328775003572	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exp/240.c.obj	282fd5a7b7a31b08
+254	530	7459328777499163	DataStructure_YWM_2nd.exe	effa7234f76f32a
+4	185	7459329904478190	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exp/240.c.obj	282fd5a7b7a31b08
+186	418	7459329906298743	DataStructure_YWM_2nd.exe	effa7234f76f32a
+4	317	7459339828952600	CMakeFiles/DataStructure_YWM_2nd.dir/chap3/exp/240.c.obj	282fd5a7b7a31b08
+317	606	7459339832082776	DataStructure_YWM_2nd.exe	effa7234f76f32a
