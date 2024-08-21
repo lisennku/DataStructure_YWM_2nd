@@ -30,7 +30,8 @@ add_executable(DataStructure_YWM_2nd
 #        "chap3/exercise/algo design/1-double_stack_in_one_array.c"
 #        "chap3/exercise/algo design/2-palindrome-stack-judge.c"
 #        "chap3/exercise/algo design/4-postfix_expression_calc.c"
-        "chap3/exercise/algo design/3-integer_stack.c"
+#        "chap3/exercise/algo design/3-integer_stack.c"
+        "chap3/exercise/algo design/5-stack_io_legal_ascertain.c"
         #        chap2/ds/two_direct_list.h
 #        chap2/ds/array_list.c
 #        chap2/array_list_merge.c
