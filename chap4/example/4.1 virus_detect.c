@@ -57,6 +57,39 @@ int index_bf(SString S, SString T, int pos) {
         return i - T.length;
     return 0;
 }
+void calculate_kmp_nextval(SString T, int * nextval) {
+    int i = 1;
+    nextval[1] = 0;
+    int j = 0;
+
+    while(i < T.length) {
+        if(j == 0 || (T.ch[i] == T.ch[j])) {
+            ++i;
+            ++j;
+            if(T.ch[i] != T.ch[j])
+                nextval[i] = j;
+            else
+                nextval[i] = nextval[j];
+        }
+        else
+            j = nextval[j];
+    }
+}
+int index_kmp(SString S, SString T, int pos, int * nextval) {
+    int i = pos;
+    int j = 1;
+    while(i <= S.length && j <= T.length) {
+        if(j == 0 || (S.ch[i] == T.ch[j])) {
+            i++;
+            j++;
+        }
+        else
+            j = nextval[j];
+    }
+    if(j > T.length)
+        return i - T.length;
+    return 0;
+}
 
 void expand_virus_dna(char * target, SString virus) {  // 第一位不存内容
     for(int i = 1; i <= virus.length; i++)
@@ -107,8 +140,12 @@ int main() {
             static_string_copy(&cur, tmp_virus + loop, virus.length);
             printf("        loop time %d's Virus's DNA is %s: \n", loop, cur.ch+1);
 
+            int nextval[cur.length + 1];
+            calculate_kmp_nextval(cur, nextval);
+
             int pos;
-            if (pos = index_bf(human, cur, 1))
+            // if (pos = index_bf(human, cur, 1))
+            if (pos = index_kmp(human, cur, 1, nextval))
                 printf("        Matched! the index starts from position %d\n", pos);
             else
                 printf("        NO Match!\n");
