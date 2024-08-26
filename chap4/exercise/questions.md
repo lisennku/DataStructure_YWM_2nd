@@ -16,19 +16,54 @@
  
 - nextval
   - nextval的计算需要根据next的值进行计算。
-  - 对于模式串t，具体求解方法为：
-    - nextval[1]=0，
-    - 从第二位开始，将nextval[next[j]]与next[j]的值进行比较
-      - 若相等，则nextval[j]=nextval[next[j]]
-      - 若不等，则nextval[j]=next[j]。
+  - 第一位值为1，nextval[1]=0。
+  - 从第二位开始，若要求第i位的nextval[i]，将next[i]的值对应的位的值与i的值进行比较
+  - （例如，当i=3时，next[3]=1对应的位数下的字符为‘a’，第i位的值为‘a’）
+    - 若当前字符的值与当前字符下next值所对应位数的值不同，则当前字符的nextval值为当前字符对应的next值
+- 若当前字符的值与当前字符下next值所对应位数的值相同，则当前字符的nextval值为当前字符对应next值的nextval值    
+
+| position | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+|----------|---|---|---|---|---|---|---|---|---|----|----|----|
+| pattern  | a | b | c | a | a | b | b | a | b | c  | a  | b  |
+| next     | 0 | 1 | 1 | 1 | 2 | 2 | 3 | 1 | 2 | 3  | 4  | 5  |
+| nextval  | 0 | 1 | 1 | 0 | 2 | 1 | 3 | 0 | 1 | 1  | 0  | 5  |
 
 2. 2．设目标为t=“abcaabbabcabaacbacba”，模式为p=“abcabaa”。    
-&emsp;（1）计算模式p的naxtval函数值；  
+&emsp;（1）计算模式p的naxtval函数值；   
+
+| position | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+|----------|---|---|---|---|---|---|---|
+| pattern  | a | b | c | a | b | a | a |
+| next     | 0 | 1 | 1 | 1 | 2 | 3 | 2 |
+| nextval  | 0 | 1 | 1 | 0 | 1 | 3 | 2 |
+
 &emsp;（2）画出利用KMP算法进行模式匹配时每一趟的匹配过程。   
+&emsp;&emsp;第一趟：  
+&emsp;&emsp;abcaabbabcabaacbacba  
+&emsp;&emsp;abcab i = 5, j = 5  
+&emsp;&emsp;第二趟：  
+&emsp;&emsp;abcaabbabcabaacbacba  
+&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abc i = 7, j = 3  
+&emsp;&emsp;第三趟：  
+&emsp;&emsp;abcaabbabcabaacbacba  
+&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a i = 7, j = 1  
+&emsp;&emsp;第四趟：  
+&emsp;&emsp;abcaabbabcabaacbacba  
+&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; abcabaa
+
+
 3. 数组A中，每个元素A[i,j]的长度均为32个二进位，行下标从-1到9，列下标从1到11，从首地址S开始连续存放主存储器中，主存储器字长为16位。求：  
-&emsp;（1）存放该数组所需多少单元？  
-&emsp;（2）存放数组第4列所有元素至少需多少单元？  
-&emsp;（3）数组按行存放时，元素A[7,4]的起始地址是多少？  
-&emsp;（4）数组按列存放时，元素A[4,7]的起始地址是多少？  
+&emsp;（1）存放该数组所需多少单元？  242  
+&emsp;（2）存放数组第4列所有元素至少需多少单元？  22  
+&emsp;（3）数组按行存放时，元素A[7,4]的起始地址是多少？  S+182  
+&emsp;（4）数组按列存放时，元素A[4,7]的起始地址是多少？  S+142
+
 4. 请将香蕉banana用工具H( )—Head( )，T( )—Tail( )从L中取出。
-&emsp;L=(apple, (orange, (strawberry, (banana)), peach), pear)。
+&emsp;L=(apple, (orange, (strawberry, (banana)), peach), pear)。  
+T(L) = ((orange, (strawberry, (banana)), peach), pear)  
+H(T(L)) = (orange, (strawberry, (banana)), peach)  
+T(H(T(L))) = ((strawberry, (banana)), peach)  
+H(T(H(T(L)))) = (strawberry, (banana))  
+T(H(T(H(T(L))))) = ((banana))  
+H(T(H(T(H(T(L)))))) = (banana)  
+H(H(T(H(T(H(T(L))))))) = banana  
