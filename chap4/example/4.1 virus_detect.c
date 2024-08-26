@@ -57,6 +57,20 @@ int index_bf(SString S, SString T, int pos) {
         return i - T.length;
     return 0;
 }
+void calculate_kmp_next(SString T, int * next) {
+    int i = 1;
+    next[1] = 0;
+    int j = 0;
+    while(i < T.length) {
+        if(j == 0 || (T.ch[i] == T.ch[j])) {
+            ++i;
+            ++j;
+            next[i] = j;
+        }
+        else
+            j = next[j];
+    }
+}
 void calculate_kmp_nextval(SString T, int * nextval) {
     int i = 1;
     nextval[1] = 0;
