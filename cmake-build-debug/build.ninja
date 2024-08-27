@@ -77,12 +77,19 @@ build CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_queue.c.obj: C_COMPIL
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
   OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap3\ds
 
-build CMakeFiles/DataStructure_YWM_2nd.dir/chap4/exp/260.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap4/exp/260.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
-  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap4\exp\260.c.obj.d
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap5/ds/binary_tree.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap5/ds/binary_tree.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap5\ds\binary_tree.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
-  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap4\exp
+  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap5\ds
+
+build CMakeFiles/DataStructure_YWM_2nd.dir/chap5/ds/btree_test.c.obj: C_COMPILER__DataStructure_YWM_2nd_unscanned_Debug C$:/Users/lisen/CLionProjects/DataStructure_YWM_2nd/chap5/ds/btree_test.c || cmake_object_order_depends_target_DataStructure_YWM_2nd
+  DEP_FILE = CMakeFiles\DataStructure_YWM_2nd.dir\chap5\ds\btree_test.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/lisen/CLionProjects/DataStructure_YWM_2nd
+  OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
+  OBJECT_FILE_DIR = CMakeFiles\DataStructure_YWM_2nd.dir\chap5\ds
 
 
 # =============================================================================
@@ -92,7 +99,7 @@ build CMakeFiles/DataStructure_YWM_2nd.dir/chap4/exp/260.c.obj: C_COMPILER__Data
 #############################################
 # Link the executable DataStructure_YWM_2nd.exe
 
-build DataStructure_YWM_2nd.exe: C_EXECUTABLE_LINKER__DataStructure_YWM_2nd_Debug CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_stack.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_stack.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_loop_queue.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_queue.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap4/exp/260.c.obj
+build DataStructure_YWM_2nd.exe: C_EXECUTABLE_LINKER__DataStructure_YWM_2nd_Debug CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_stack.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_stack.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/array_loop_queue.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap3/ds/linked_queue.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap5/ds/binary_tree.c.obj CMakeFiles/DataStructure_YWM_2nd.dir/chap5/ds/btree_test.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\DataStructure_YWM_2nd.dir
