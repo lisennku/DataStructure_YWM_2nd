@@ -18,10 +18,11 @@ int main() {
         if(row == 0 && col == 0)
             break;
 
-        int arr[row*col];
+        int *arr = (int *) malloc(sizeof(int) * row * col);
+
         for(int i = 0; i < row; i++) {
             for(int j = 0; j < col; j++) {
-                scanf("%d", arr[col * i + col]);
+                scanf("%d", arr + col * i + j);
             }
         }
 
