@@ -17,6 +17,7 @@ typedef struct binary_tree_node BTNode;
 typedef struct binary_tree_node * BTree;
 
 void create_binary_tree(BTree * tree);
+BTree create_binary_tree_no_para();
 
 void pre_order_traverse_recursive(BTree tree);
 void in_order_traverse_recursive(BTree tree);
