@@ -20,5 +20,11 @@ void post_order_traverse_non_recursive(BTree tree);
 
 void level_traverse(BTree tree);
 
+void copy_binary_tree(BTree src, BTree * tgt);
+
+int calc_binary_tree_depth(BTree tree);
+
+int calc_binary_tree_nodes(BTree tree);
+
 
 #endif //BINARY_TREE_H

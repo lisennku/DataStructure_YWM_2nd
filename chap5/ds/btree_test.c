@@ -19,6 +19,8 @@ int main() {
     putchar('\n');
     printf("level traverse\n");
     level_traverse(t);
-
+    putchar('\n');
+    printf("the nodes of a tree is %d\n", calc_binary_tree_nodes(t));
+    printf("the depth of a tree is %d\n", calc_binary_tree_depth(t));
     return 0;
 }
