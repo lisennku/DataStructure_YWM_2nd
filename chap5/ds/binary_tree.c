@@ -1,9 +1,12 @@
 //
 // Created by lisen on 24-8-27.
 //
-#include <stdlib.h>
-#include <stdio.h>
 #include "binary_tree.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "btnode_queue.h"
+
 
 void create_binary_tree(BTree * tree) {
     /*
@@ -55,7 +58,7 @@ BTree create_binary_tree_no_para() {
 
 void pre_order_traverse_recursive(BTree tree) {
     if(tree) {
-        printf("%c", tree->data);
+        printf("%c ", tree->data);
         pre_order_traverse_recursive(tree->left_child);
         pre_order_traverse_recursive(tree->right_child);
     }
@@ -63,7 +66,7 @@ void pre_order_traverse_recursive(BTree tree) {
 void in_order_traverse_recursive(BTree tree) {
     if(tree) {
         in_order_traverse_recursive(tree->left_child);
-        printf("%c", tree->data);
+        printf("%c ", tree->data);
         in_order_traverse_recursive(tree->right_child);
     }
 }
@@ -72,10 +75,59 @@ void post_order_traverse_recursive(BTree tree) {
     if(tree) {
         post_order_traverse_recursive(tree->left_child);
         post_order_traverse_recursive(tree->right_child);
-        printf("%c", tree->data);
+        printf("%c ", tree->data);
     }
 }
 
-void pre_order_traverse_non_recursive(BTree tree);
-void in_order_traverse_non_recursive(BTree tree);
+void pre_order_traverse_non_recursive(BTree tree) {
+    BT_SStack s;
+    bt_linked_stack_init(&s);
+    BTNode * p = tree;
+    while(p != NULL || (!bt_linked_stack_is_empty(s))) {
+        if(p != NULL) {
+            printf("%c ", p->data);
+            bt_linked_stack_push(&s, p);
+            p = p->left_child;
+        }
+        else {
+            bt_linked_stack_pop(&s, &p);
+            p = p->right_child;
+        }
+    }
+}
+
+void in_order_traverse_non_recursive(BTree tree) {
+    BT_SStack s;
+    bt_linked_stack_init(&s);
+    BTNode *p = tree;
+    while(p != NULL || (!bt_linked_stack_is_empty(s))) {
+        if(p != NULL) {
+            bt_linked_stack_push(&s, p);
+            p = p->left_child;
+        }
+        else {
+            bt_linked_stack_pop(&s, &p);
+            printf("%c ", p->data);
+            p = p->right_child;
+        }
+    }
+}
 void post_order_traverse_non_recursive(BTree tree);
+
+void level_traverse(BTree tree) {
+    BT_Queue q;
+    bt_linked_queue_init(&q);
+
+    if(tree != NULL) {
+        bt_linked_queue_enqueue(&q, tree);
+        while(!bt_linked_queue_is_empty(q)) {
+            BTNode * tmp ;
+            bt_linked_queue_dequeue(&q, &tmp);
+            printf("%c ", tmp->data);
+            if (tmp->left_child != NULL)
+                bt_linked_queue_enqueue(&q, tmp->left_child);
+            if (tmp->right_child != NULL)
+                bt_linked_queue_enqueue(&q, tmp->right_child);
+        }
+    }
+}
