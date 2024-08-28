@@ -112,7 +112,44 @@ void in_order_traverse_non_recursive(BTree tree) {
         }
     }
 }
-void post_order_traverse_non_recursive(BTree tree);
+void post_order_traverse_non_recursive(BTree tree) {
+    /*
+    * 	□ 后序遍历的思路和前中序类似，也要借助栈实现，
+        □ 第一个指针p，用于遍历树，和承接弹出/获取栈顶元素
+        □ 但是区别在于需要用额外指针记录出栈的结点r，以便和下一轮循环时的结点的右子结点比较是否相等
+        □ 整体思路是从根开始，一直将左子结点入栈，直到左子结点为空
+        □ 然后获取栈顶元素，判断右子结点是否不为空，且右子结点不是刚刚出栈的元素
+            ® 不为空，且不是刚刚访问的结点，则
+                ◊ 将指针指向右子结点，然后入栈，再从前一步开始操作，依次将左子结点入栈
+            ® 为空，或刚刚访问的，则
+                ◊ 弹出栈顶元素给p，进行访问
+                ◊ 将r指向p
+                ◊ 将p置空，由于整个程序使用p进行遍历，不置为空会导致弹出结点重复入栈
+     */
+    BT_SStack s;
+    bt_linked_stack_init(&s);
+    BTNode * p = tree;
+    BTNode * r = NULL;
+
+    while(p != NULL || (!bt_linked_stack_is_empty(s))) {
+        if(p != NULL) {
+            bt_linked_stack_push(&s, p);
+            p = p->left_child;
+        }
+        else {
+            p = bt_linked_stack_get_top(s);
+            if(p->right_child && p->right_child != r) {
+                p = p->right_child;
+            }
+            else {
+                bt_linked_stack_pop(&s, &p);
+                printf("%c ", p->data);
+                r = p;
+                p = NULL;
+            }
+        }
+    }
+}
 
 void level_traverse(BTree tree) {
     BT_Queue q;
