@@ -34,6 +34,8 @@ add_executable(DataStructure_YWM_2nd
         chap5/ds/huffman_tree.h
         chap5/ds/huffman_tree.c
         chap5/ds/huffman_tree_test.c
+        chap5/leetcode/easy/94-binary-tree-inorder-traversal.c
+        chap5/leetcode/easy/100-same-tree.c
         #        "chap3/example/3.1 base_convert.c"
 #        "chap3/example/3.2 bracket_match.c"
 #        "chap3/example/3.3 calculate_expression.c"
