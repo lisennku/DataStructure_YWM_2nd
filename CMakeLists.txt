@@ -25,12 +25,15 @@ add_executable(DataStructure_YWM_2nd
         chap3/ds/linked_queue.c
         chap5/ds/binary_tree.h
         chap5/ds/binary_tree.c
-        chap5/ds/btree_test.c
+#        chap5/ds/btree_test.c
         chap5/ds/btnode_stack.h
         chap5/ds/btnode_stack.c
         chap5/ds/btnode.h
         chap5/ds/btnode_queue.h
         chap5/ds/btnode_queue.c
+        chap5/ds/huffman_tree.h
+        chap5/ds/huffman_tree.c
+        chap5/ds/huffman_tree_test.c
         #        "chap3/example/3.1 base_convert.c"
 #        "chap3/example/3.2 bracket_match.c"
 #        "chap3/example/3.3 calculate_expression.c"
