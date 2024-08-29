@@ -76,3 +76,14 @@ void pre_order_traverse_huffman_tree(HT_Tree ht, int node) {
 
     pre_order_traverse_huffman_tree(ht, ht[node].right_child);
 }
+int calc_huffman_tree_weighted_path_length(HT_Tree ht, int pos, int path_length) {
+    if(pos == 0)
+        return 0;
+    if(ht[pos].left_child == 0 && ht[pos].right_child == 0) {
+        printf("weight %d, path length %d\n", ht[pos].weight, path_length);
+        return ht[pos].weight * path_length;
+    }
+
+    return calc_huffman_tree_weighted_path_length(ht, ht[pos].left_child, path_length + 1)
+        + calc_huffman_tree_weighted_path_length(ht, ht[pos].right_child, path_length + 1);
+}
