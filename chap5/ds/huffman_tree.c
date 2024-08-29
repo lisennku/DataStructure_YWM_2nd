@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <string.h>
 #include "huffman_tree.h"
 
 void select_index_for_two_min_value(HT_Tree ht, int end_pos, int * idx1, int * idx2) {
@@ -86,4 +87,44 @@ int calc_huffman_tree_weighted_path_length(HT_Tree ht, int pos, int path_length)
 
     return calc_huffman_tree_weighted_path_length(ht, ht[pos].left_child, path_length + 1)
         + calc_huffman_tree_weighted_path_length(ht, ht[pos].right_child, path_length + 1);
+}
+void generate_huffman_code(HT_Tree ht, int n, HT_Code * code) {
+    /*
+     * ht是一个数组，前n个元素为叶结点
+     * 从叶结点开始，向树根出发找寻，每次判断当前节点是其父节点的左还是右，并对应赋值0/1
+     * 编码保存在二维的char数组code里
+     * 使用临时char数组，从后向前存储编码，因为正常的哈夫曼编码是从根向叶结点
+     * 参数code使用地址传参，因为在主函数内部只是声明了该变量，初始化等操作在函数内，所以必须使用地址传参
+     */
+    // 为code分配行数，从1开始，因此要n+1
+    *code = (char **) malloc(sizeof(char *) * (n + 1));
+    char * tmp = (char *) malloc(sizeof(char) * n);
+    tmp[n-1] = '\0';
+
+
+    for(int i = 1; i <= n; i++) {
+        // tmp数组存储字符开始的位置
+        int start = n - 1;
+
+        // 从ht下标1开始，读取每个叶结点
+        int parent_idx = ht[i].parent;
+        int child_idx = i;
+
+        while(parent_idx != 0) {
+            start -- ; // 因为start赋值n-1，所以进入循环要先减1
+            if(ht[parent_idx].left_child == child_idx)
+                tmp[start] = '0';
+            else
+                tmp[start] = '1';
+
+            child_idx = parent_idx;
+            parent_idx = ht[parent_idx].parent;
+        }
+
+        // 循环结束，说明此时该叶结点编码已经完成
+        // 为该编码动态分配内存，其长度为n-start，包含了'\0'的长度
+        (*code)[i] = (char *) malloc(sizeof(char) * (n - start));
+        strcpy((*code)[i], tmp+start);
+    }
+    free(tmp);
 }
