@@ -47,16 +47,19 @@ void alg_create_undirected_graph(ALGraph * g) {
                 // 先处理 v1 -> v2 的边
                 Arc_Node * arn1 = (Arc_Node *) malloc(sizeof(Arc_Node));
                 // 更新索引值
-                arn1->adj_idx = idx1;
+                arn1->adj_idx = idx2;     // 需要注意存储的是指向的位置的索引
                 // 找到v1对应的表头结点，将当前的first_arc的值，赋值给新结点的next_art
                 arn1->next_arc = g->hd[idx1].first_arc;
                 g->hd[idx1].first_arc = arn1;
 
                 // 再处理 v2 -> v1 的边
                 Arc_Node * arn2 = (Arc_Node *) malloc(sizeof(Arc_Node));
-                arn2->adj_idx = idx2;
+                arn2->adj_idx = idx1;     // 需要注意存储的是指向的位置的索引
                 arn2->next_arc = g->hd[idx2].first_arc;
                 g->hd[idx2].first_arc = arn2;
+            }
+            else {
+                printf("vertex value not exist, please re-enter\n");
             }
         }while(idx1 == -1 || idx2 == -1);
     }
@@ -67,10 +70,10 @@ void alg_create_undirected_net(ALGraph * g);
 
 void alg_display(ALGraph g) {
     for(int i = 0; i < g.vertex_nums; i++) {
-        printf("%c:", g.hd[i]);
+        printf("%c:", g.hd[i].data);
         Arc_Node * p = g.hd[i].first_arc;
         while(p) {
-            printf(" -> %c", g.hd[p->adj_idx]);
+            printf(" -> %c", g.hd[p->adj_idx].data);
             p = p->next_arc;
         }
         putchar('\n');
