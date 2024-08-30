@@ -33,11 +33,17 @@ add_executable(DataStructure_YWM_2nd
         chap5/ds/btnode_queue.c
         chap5/ds/huffman_tree.h
         chap5/ds/huffman_tree.c
-        chap5/ds/huffman_tree_test.c
-        chap5/leetcode/easy/94-binary-tree-inorder-traversal.c
-        chap5/leetcode/easy/100-same-tree.c
-        chap5/leetcode/easy/101-symmetric-tree.c
-        chap5/leetcode/easy/104-maximum-depth-of-binary-tree.c
+#        chap5/ds/huffman_tree_test.c
+#        chap5/leetcode/easy/94-binary-tree-inorder-traversal.c
+#        chap5/leetcode/easy/100-same-tree.c
+#        chap5/leetcode/easy/101-symmetric-tree.c
+#        chap5/leetcode/easy/104-maximum-depth-of-binary-tree.c
+        chap6/ds/adjacency_matrix_graph.h
+#        chap6/ds/adjacency_matrix_graph_test.c
+        chap6/ds/adjacency_matrix_graph.c
+        chap6/ds/adjacency_list_graph.h
+        chap6/ds/adjacency_list_graph.c
+        chap6/ds/adjacency_list_graph_test.c
         #        "chap3/example/3.1 base_convert.c"
 #        "chap3/example/3.2 bracket_match.c"
 #        "chap3/example/3.3 calculate_expression.c"
