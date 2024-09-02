@@ -32,7 +32,7 @@ void alg_create_undirected_graph(ALGraph * g) {
         g->hd[i].first_arc = NULL;
     }
 
-    // 根据边的长度，输入边两端的顶点的值
+    // 根据边的数量，输入边两端的顶点的值
     for(int i = 0; i < g->edge_nums; i++) {
         vertex v1, v2;
         int idx1, idx2;
@@ -67,6 +67,66 @@ void alg_create_undirected_graph(ALGraph * g) {
 
 // 创建一个无向网
 void alg_create_undirected_net(ALGraph * g);
+
+void alg_create_directed_graph_w_inverse(ALGraph * g, ALGraph * ig) {
+    // 确定图的顶点和边数
+    printf("please input vertex numbers\n");
+    int v_nums;
+    scanf("%d", &v_nums);
+    g->vertex_nums = v_nums;
+    ig->vertex_nums = v_nums;
+
+    printf("please input edge numbers\n");
+    int e_nums;
+    scanf("%d", &e_nums);
+    g->edge_nums = e_nums;
+    ig->edge_nums = e_nums;
+
+    // 输入图的顶点的值
+    for(int i = 0; i < g->vertex_nums; i++) {
+        printf("please input no. %d vertex value, no duplicated!\n", i);
+        // 更新邻接表表头和逆邻接表表头
+        char tmp;
+        scanf(" %c", &tmp);
+        g->hd[i].data = tmp;
+        ig->hd[i].data = tmp;
+        // 因为hd数组中的各个元素是边链表的头结点，所以需要初始化first_arc指针为NULL
+        g->hd[i].first_arc = NULL;
+        ig->hd[i].first_arc = NULL;
+    }
+
+    // 根据边的数量，输入边两端的顶点的值
+    for(int i = 0; i < g->edge_nums; i++) {
+        vertex v1, v2;
+        int idx1, idx2;
+        do {
+            printf("please input a pair of vertex value for no. %d edge\n", i);
+            scanf(" %c %c", &v1, &v2);
+            idx1 = alg_locate_vertex(*g, v1);
+            idx2 = alg_locate_vertex(*g, v2);
+            if(idx1 != -1 && idx2 != -1) {
+                // 为了方便，边链表的新结点在表头处插入，也即放到顶点所表示的头结点后
+                // 因为是有向图
+                // 只处理 v1 -> v2 的边
+                Arc_Node * arn1 = (Arc_Node *) malloc(sizeof(Arc_Node));
+                // 更新索引值
+                arn1->adj_idx = idx2;     // 需要注意存储的是指向的位置的索引
+                // 找到v1对应的表头结点，将当前的first_arc的值，赋值给新结点的next_art
+                arn1->next_arc = g->hd[idx1].first_arc;
+                g->hd[idx1].first_arc = arn1;
+
+                // 处理逆邻接表
+                Arc_Node * arn2 = (Arc_Node *) malloc(sizeof(Arc_Node));
+                arn2->adj_idx = idx1;     // 需要注意存储的是指向的位置的索引
+                arn2->next_arc = ig->hd[idx2].first_arc;
+                ig->hd[idx2].first_arc = arn2;
+            }
+            else {
+                printf("vertex value not exist, please re-enter\n");
+            }
+        }while(idx1 == -1 || idx2 == -1);
+    }
+}
 
 void alg_display(ALGraph g) {
     for(int i = 0; i < g.vertex_nums; i++) {

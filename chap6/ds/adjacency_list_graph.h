@@ -54,6 +54,8 @@ void alg_create_undirected_graph(ALGraph * g);
 // 创建一个无向网
 void alg_create_undirected_net(ALGraph * g);
 
+void alg_create_directed_graph_w_inverse(ALGraph * g, ALGraph * ig);
+
 void alg_display(ALGraph g);
 
 
