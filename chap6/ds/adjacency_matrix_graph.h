@@ -47,6 +47,14 @@ void amg_create_undirected_graph(AMGraph * g);
 // 创建一个无向网
 void amg_create_undirected_net(AMGraph * g);
 
+// 返回无向图中，第一个与指定下标连通的顶点的下标
+// 若无连通则返回 -1
+int amg_first_adj_vertex_index_undirected_graph(AMGraph g, int v_index);
+
+// 返回无向图中，相对于w_index的与v_index对应顶点连通的下一个顶点
+// 若无连通则返回 -1
+int amg_next_adj_vertex_index_undirected_graph(AMGraph g, int v_index, int w_index);
+
 void amg_display(AMGraph g);
 
 

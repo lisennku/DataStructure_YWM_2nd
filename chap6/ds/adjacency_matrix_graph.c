@@ -105,6 +105,28 @@ void amg_create_undirected_net(AMGraph * g) {
     }
 }
 
+// 返回无向图中，第一个与指定下标连通的顶点的下标
+// 若无连通则返回 -1
+int amg_first_adj_vertex_index_undirected_graph(AMGraph g, int v_index) {
+    // 因为是无向图，只按照行或列搜索即可
+    for(int i = 0; i < g.vertex_nums; i++) {
+        if(g.adjacency_matrix[v_index][i] == 1)
+            return i;
+    }
+    return -1;
+}
+
+// 返回无向图中，相对于w_index的与v_index对应顶点连通的下一个顶点
+// 若无连通则返回 -1
+int amg_next_adj_vertex_index_undirected_graph(AMGraph g, int v_index, int w_index) {
+    // 因为是无向图，只按照行或列搜索即可
+    for(int i = w_index + 1; i < g.vertex_nums; i++) {
+        if(g.adjacency_matrix[v_index][i] == 1)
+            return i;
+    }
+    return -1;
+}
+
 void amg_display(AMGraph g) {
     printf("     ");
     for(int i = 0; i < g.vertex_nums; i++) {
