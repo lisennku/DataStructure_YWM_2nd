@@ -136,6 +136,29 @@ int amg_next_adj_vertex_index_undirected_graph(AMGraph g, int v_index, int w_ind
     return -1;
 }
 
+void amg_dfs(AMGraph g, int v_index, bool * visited) {
+    printf(" %c ", g.v[v_index]);
+    visited[v_index] = true;
+    for(int i = 0; i < g.vertex_nums; i++) {
+        // 检查矩阵中第i行的各个单元
+        // 递归条件 matrix[v][i] = 1 and visited[i] != true
+        if(g.adjacency_matrix[v_index][i] == 1 && visited[i] != true) {
+            amg_dfs(g, i, visited);
+        }
+    }
+}
+
+void amg_dfs_traverse(AMGraph g, bool * visited) {
+    for(int i = 0; i < g.vertex_nums; i++) {
+        visited[i] = false;
+    }
+    for(int i = 0; i < g.vertex_nums; i++) {
+        if(visited[i] == false) {
+            amg_dfs(g, i, visited);
+        }
+    }
+}
+
 void amg_display(AMGraph g) {
     printf("     ");
     for(int i = 0; i < g.vertex_nums; i++) {

@@ -18,6 +18,8 @@
         - edge_cnt 表示当前边数
 #endif
 
+#include <stdbool.h>
+
 #define INFINITE_WEIGHT 40000
 #define MAX_VERTEX_NUM  100
 
@@ -54,6 +56,10 @@ int amg_first_adj_vertex_index_undirected_graph(AMGraph g, int v_index);
 // 返回无向图中，相对于w_index的与v_index对应顶点连通的下一个顶点
 // 若无连通则返回 -1
 int amg_next_adj_vertex_index_undirected_graph(AMGraph g, int v_index, int w_index);
+
+void amg_dfs(AMGraph g, int v_index, bool * visited);
+
+void amg_dfs_traverse(AMGraph g, bool * visited);
 
 void amg_display(AMGraph g);
 
