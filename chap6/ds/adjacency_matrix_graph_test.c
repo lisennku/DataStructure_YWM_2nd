@@ -16,7 +16,7 @@ int main() {
     // bool visited[g.vertex_nums];
     //
     // amg_bfs_traverse(g, visited);
-    amg_minimum_span_tree_prim(g, 'a');
-
+    // amg_minimum_span_tree_prim(g, 'a');
+    amg_minimum_span_tree_kruskal(g);
     return 0;
 }

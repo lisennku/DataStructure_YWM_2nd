@@ -245,6 +245,67 @@ void amg_minimum_span_tree_prim(AMGraph g, Vertex v) {
     }
 }
 
+void amg_sort_edges(Edge_Collect * edges, int n) {
+    Edge tmp;
+    for(int i = 0; i < n - 1; i++) {
+        for(int j = i + 1; j < n; j++) {
+            if(edges[i].weight > edges[j].weight) {
+                Edge_Collect tmp;
+                tmp = edges[i];
+                edges[i] = edges[j];
+                edges[j] = tmp;
+            }
+        }
+    }
+}
+
+void amg_minimum_span_tree_kruskal(AMGraph g) {
+    // 创建Edge_Collect数组，赋值并排序
+    Edge_Collect edges[g.edge_nums];
+    int tmp_idx = 0;
+    // 给edges数组赋值，因为是无向图，只扫描矩阵上三角部分即可
+    for(int i = 0; i < g.vertex_nums; i++) {
+        for(int j = i; j < g.vertex_nums; j++) {
+            if(g.adjacency_matrix[i][j] != INFINITE_WEIGHT) {
+                edges[tmp_idx].head = g.v[i];
+                edges[tmp_idx].tail = g.v[j];
+                edges[tmp_idx].weight = g.adjacency_matrix[i][j];
+                tmp_idx ++;
+            }
+        }
+    }
+
+    amg_sort_edges(edges, g.edge_nums);
+
+    // 创建连通分量数组，初始值为下标
+    int vexset[g.vertex_nums];
+    for(int i = 0; i < g.vertex_nums; i++)
+        vexset[i] = i;
+
+    // 算法开始
+    // 依次从edges数组中选择权重最小的边，因为已经排序，所以直接从0开始遍历即可
+    for(int i = 0; i < g.edge_nums; i++) {
+        // 找出顶点的下标
+        int idx1 = amg_locate_vertex(g, edges[i].head);
+        int idx2 = amg_locate_vertex(g, edges[i].tail);
+        // 找出顶点所属的连通分量
+        int s1 = vexset[idx1];
+        int s2 = vexset[idx2];
+        // 属于不同连通分量时
+        if(s1 != s2) {
+            printf("%c %c\n", edges[i].head, edges[i].tail);
+            // 更新连通分量
+            // 因为可能存在一个连通分量有多个边，所以要循环
+            for(int j = 0; j < g.vertex_nums; j ++) {
+                if(vexset[j] == s2)
+                    vexset[j] = s1;
+            }
+        }
+
+
+    }
+}
+
 void amg_display(AMGraph g) {
     printf("     ");
     for(int i = 0; i < g.vertex_nums; i++) {
