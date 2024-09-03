@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "adjacency_list_graph.h"
 
 // 根据结点值，找到该结点在表头数组内的下标
@@ -125,6 +126,27 @@ void alg_create_directed_graph_w_inverse(ALGraph * g, ALGraph * ig) {
                 printf("vertex value not exist, please re-enter\n");
             }
         }while(idx1 == -1 || idx2 == -1);
+    }
+}
+
+void alg_dfs(ALGraph g, int v_index, bool * visited) {
+    printf(" %c ", g.hd[v_index].data);
+    visited[v_index] = true;
+
+    Arc_Node * p = g.hd[v_index].first_arc;
+    while(p != NULL) {
+        if(visited[p->adj_idx] == false)
+            alg_dfs(g, p->adj_idx, visited);
+        p = p->next_arc;
+    }
+}
+
+void alg_dfs_traverse(ALGraph g, bool * visited) {
+    for(int i = 0; i < g.vertex_nums; i++)
+        visited[i] = false;
+    for(int i = 0; i < g.vertex_nums; i++) {
+        if(visited[i] == false)
+            alg_dfs(g, i, visited);
     }
 }
 

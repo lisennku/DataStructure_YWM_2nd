@@ -19,6 +19,8 @@
         edge_nums
 #endif
 
+#include <stdbool.h>
+
 #define MAX_VERTEX_NUM  100
 typedef int weight;
 typedef char vertex;
@@ -63,6 +65,10 @@ int alg_first_adj_vertex_index_undirected_graph(ALGraph g, int v_index);
 // 返回无向图中，相对于w_index的与v_index对应顶点连通的下一个顶点
 // 若无连通则返回 -1
 int alg_next_adj_vertex_index_undirected_graph(ALGraph g, int v_index, int w_index);
+
+void alg_dfs(ALGraph g, int v_index, bool * visited);
+
+void alg_dfs_traverse(ALGraph g, bool * visited);
 
 void alg_display(ALGraph g);
 
