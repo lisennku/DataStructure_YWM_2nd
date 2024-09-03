@@ -150,6 +150,53 @@ void alg_dfs_traverse(ALGraph g, bool * visited) {
     }
 }
 
+void alg_bfs(ALGraph g, int v_index, bool * visited) {
+    printf(" %c ", g.hd[v_index].data);
+    visited[v_index] = true;
+
+    // 使用数组代替队列，front表示队首，rear表示队尾
+    // 数组存储g.hd的下标
+    int queue[g.vertex_nums];
+    int front = 0, rear = 0;
+    for(int i = 0; i < g.vertex_nums; i++)
+        queue[i] = -1;
+
+    // v_index 入队
+    queue[rear] = v_index;
+    rear ++;
+
+    while(front != rear) { // 队列非空
+        // 弹出队首元素
+        int idx = queue[front];
+        front ++;
+
+        Arc_Node * p = g.hd[idx].first_arc;
+        while(p != NULL) {
+            // 如果未访问过，则访问该边结点，并将下标入队
+            if(visited[p->adj_idx] == false) {
+                printf(" %c ", g.hd[p->adj_idx].data);
+                visited[p->adj_idx] = true;
+
+                queue[rear] = p->adj_idx;
+                rear ++;
+            }
+            p = p->next_arc;
+        }
+    }
+
+
+}
+
+void alg_bfs_traverse(ALGraph g, bool * visited) {
+    for(int i = 0; i < g.vertex_nums; i++)
+        visited[i] = false;
+    for(int i = 0; i < g.vertex_nums; i++) {
+        if(visited[i] == false)
+            alg_bfs(g, i, visited);
+    }
+}
+
+
 void alg_display(ALGraph g) {
     for(int i = 0; i < g.vertex_nums; i++) {
         printf("%c:", g.hd[i].data);

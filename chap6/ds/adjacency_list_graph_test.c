@@ -16,6 +16,6 @@ int main() {
     // alg_display(g);
     // alg_display(ig);
     bool visited[g.vertex_nums];
-    alg_dfs_traverse(g, visited);  // 因为邻接表中，边链表的插入是头插法，所以输出顺序和邻接矩阵不同，但只是顺序不同而已
+    alg_bfs_traverse(g, visited);  // 因为邻接表中，边链表的插入是头插法，所以输出顺序和邻接矩阵不同，但只是顺序不同而已
     return 0;
 }

@@ -70,6 +70,10 @@ void alg_dfs(ALGraph g, int v_index, bool * visited);
 
 void alg_dfs_traverse(ALGraph g, bool * visited);
 
+void alg_bfs(ALGraph g, int v_index, bool * visited);
+
+void alg_bfs_traverse(ALGraph g, bool * visited);
+
 void alg_display(ALGraph g);
 
 
