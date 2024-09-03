@@ -15,7 +15,7 @@ int main() {
     putchar('\n');
     bool visited[g.vertex_nums];
 
-    amg_dfs_traverse(g, visited);
+    amg_bfs_traverse(g, visited);
 
     return 0;
 }

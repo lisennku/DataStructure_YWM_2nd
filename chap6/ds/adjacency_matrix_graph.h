@@ -61,7 +61,12 @@ void amg_dfs(AMGraph g, int v_index, bool * visited);
 
 void amg_dfs_traverse(AMGraph g, bool * visited);
 
+void amg_bfs(AMGraph g, int v_index, bool * visited);
+
+void amg_bfs_traverse(AMGraph g, bool * visited);
+
 void amg_display(AMGraph g);
+
 
 
 

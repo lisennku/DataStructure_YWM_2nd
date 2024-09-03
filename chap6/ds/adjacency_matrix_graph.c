@@ -159,6 +159,50 @@ void amg_dfs_traverse(AMGraph g, bool * visited) {
     }
 }
 
+void amg_bfs(AMGraph g, int v_index, bool * visited) {
+    printf(" %c ", g.v[v_index]);
+    visited[v_index] = true;
+
+    // 以数组代替队列，使用front 和 rear判断队列是否为空
+    // 数组存储g.v的下标
+    int queue[g.vertex_nums];
+    int front = 0;   // 队首
+    int rear = 0;    // 队尾
+    for(int i = 0; i < g.vertex_nums; i++)
+        queue[i] = -1;
+
+    queue[front] = v_index;
+    rear ++;
+
+    while(front != rear) { // 队列非空
+        // 从队首弹出一个下标
+        int idx = queue[front];
+        front ++;
+
+        for(int i = 0; i < g.vertex_nums; i++) {
+            if(g.adjacency_matrix[idx][i] == 1 && visited[i] == false) {
+                // 边连通，且未被访问，则输出，并入队
+                printf(" %c ", g.v[i]);
+                visited[i] = true;
+                queue[rear] = i;
+                rear ++;
+            }
+        }
+
+    }
+}
+
+void amg_bfs_traverse(AMGraph g, bool * visited) {
+    for(int i = 0; i < g.vertex_nums; i++) {
+        visited[i] = false;
+    }
+    for(int i = 0; i < g.vertex_nums; i++) {
+        if(visited[i] == false) {
+            amg_bfs(g, i, visited);
+        }
+    }
+}
+
 void amg_display(AMGraph g) {
     printf("     ");
     for(int i = 0; i < g.vertex_nums; i++) {
