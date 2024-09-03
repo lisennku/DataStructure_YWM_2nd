@@ -56,6 +56,14 @@ void alg_create_undirected_net(ALGraph * g);
 
 void alg_create_directed_graph_w_inverse(ALGraph * g, ALGraph * ig);
 
+// 返回无向图中，第一个与指定下标连通的顶点的下标
+// 若无连通则返回 -1
+int alg_first_adj_vertex_index_undirected_graph(ALGraph g, int v_index);
+
+// 返回无向图中，相对于w_index的与v_index对应顶点连通的下一个顶点
+// 若无连通则返回 -1
+int alg_next_adj_vertex_index_undirected_graph(ALGraph g, int v_index, int w_index);
+
 void alg_display(ALGraph g);
 
 
