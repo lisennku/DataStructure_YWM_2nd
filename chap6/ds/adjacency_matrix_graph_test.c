@@ -9,13 +9,14 @@
 int main() {
 
     AMGraph g;
-    amg_create_undirected_graph(&g);
-    // amg_create_undirected_net(&g);
+    // amg_create_undirected_graph(&g);
+    amg_create_undirected_net(&g);
     amg_display(g);
     putchar('\n');
-    bool visited[g.vertex_nums];
-
-    amg_bfs_traverse(g, visited);
+    // bool visited[g.vertex_nums];
+    //
+    // amg_bfs_traverse(g, visited);
+    amg_minimum_span_tree_prim(g, 'a');
 
     return 0;
 }

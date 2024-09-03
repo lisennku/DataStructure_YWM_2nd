@@ -39,6 +39,13 @@ struct adjacency_matrix_graph {
 
 typedef struct adjacency_matrix_graph AMGraph;
 
+struct close_edge_node {
+    Vertex adjvex;
+    Edge   low_cost;
+};
+
+typedef struct close_edge_node CEdge;
+
 // 根据结点值，找到该结点在v数组内的下标
 // 找不到则返回-1
 int amg_locate_vertex(const AMGraph g, const Vertex v);
@@ -64,6 +71,10 @@ void amg_dfs_traverse(AMGraph g, bool * visited);
 void amg_bfs(AMGraph g, int v_index, bool * visited);
 
 void amg_bfs_traverse(AMGraph g, bool * visited);
+
+int amg_find_min_cost_index_closedge(int n, CEdge closedge[n]);
+
+void amg_minimum_span_tree_prim(AMGraph g, Vertex v);
 
 void amg_display(AMGraph g);
 

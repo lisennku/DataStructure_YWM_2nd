@@ -203,6 +203,48 @@ void amg_bfs_traverse(AMGraph g, bool * visited) {
     }
 }
 
+int amg_find_min_cost_index_closedge(int n, CEdge closedge[n]) {
+    Edge tmp = INFINITE_WEIGHT;
+    int idx ;
+    for(int i = 0; i < n; i++) {
+        if(closedge[i].low_cost == 0)
+            continue;
+        if(closedge[i].low_cost < tmp) {
+            tmp = closedge[i].low_cost;
+            idx = i;
+        }
+    }
+    return idx;
+}
+
+void amg_minimum_span_tree_prim(AMGraph g, Vertex v) {
+    int k = amg_locate_vertex(g, v);
+    // 创建closedge数组
+    CEdge closedge[g.vertex_nums];
+    // 初始化closedge数组
+    for(int i = 0; i < g.vertex_nums; i++) {
+        if(i != k) {
+            closedge[i].adjvex = v;
+            closedge[i].low_cost = g.adjacency_matrix[k][i];
+        }
+    }
+    closedge[k].adjvex = v;
+    closedge[k].low_cost = 0;
+
+    // 循环n-1次
+    for(int i = 1; i < g.vertex_nums; i++) {
+        k = amg_find_min_cost_index_closedge(g.vertex_nums, closedge);
+        printf("%c %c \n", closedge[k].adjvex, g.v[k]);
+        closedge[k].low_cost = 0;
+        for(int i = 0; i < g.vertex_nums; i++) {
+            if(g.adjacency_matrix[k][i] < closedge[i].low_cost) {
+                closedge[i].adjvex = g.v[k];
+                closedge[i].low_cost = g.adjacency_matrix[k][i];
+            }
+        }
+    }
+}
+
 void amg_display(AMGraph g) {
     printf("     ");
     for(int i = 0; i < g.vertex_nums; i++) {
