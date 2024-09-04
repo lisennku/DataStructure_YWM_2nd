@@ -95,9 +95,11 @@ void amg_minimum_span_tree_kruskal(AMGraph g);
 
 void amg_shortest_path_dijkstra(AMGraph g, int v_index, bool * s, Edge * d, int * path);
 
-
-
 void amg_dijkstra_path_display(AMGraph g, int * path, int v_index);
+
+void amg_shortest_path_floyd(AMGraph g, int n, Edge d[n][n], int path[n][n]);
+
+void amg_floyd_path_display(AMGraph g, int n, Edge d[n][n], int path[n][n]);
 
 void amg_display(AMGraph g);
 

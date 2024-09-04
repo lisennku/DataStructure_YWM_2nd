@@ -424,6 +424,69 @@ void amg_dijkstra_path_display(AMGraph g, int * path, int v_index) {
     }
 }
 
+void amg_shortest_path_floyd(AMGraph g, int n, Edge d[n][n], int path[n][n]) {
+    // 初始化二维数组d 和 二维数组path
+    // d表示的是i到j的最短路径的长度，初始化为直接边的权重，无直接边则初始化为表示无穷的权重
+    // path表示的是i到j的最短路径里，vj的前驱顶点，初始化为，如果i到j有直接边，则为i，否则为-1
+    for(int i = 0; i < g.vertex_nums; i++) {
+        for(int j = 0; j < g.vertex_nums; j++) {
+            d[i][j] = g.adjacency_matrix[i][j];
+            if(d[i][j] < INFINITE_WEIGHT)
+                path[i][j] = i;             // 有直接边的时候，path里的前驱结点是i
+            else
+                path[i][j] = -1;            // i到j没有直接边，则初始化为-1
+        }
+    }
+
+    // 循环
+    // 最外层循环其实循环的是图的每个顶点
+    // 内层两个循环，是遍历d和path的每个元素
+    for(int k = 0; k < g.vertex_nums; k ++) {
+        for(int i = 0; i < g.vertex_nums; i++) {
+            for(int j = 0; j < g.vertex_nums; j++) {
+                if(d[i][k] + d[k][j] < d[i][j]) {         // 表示的是i到k，k到j的距离 和 当前i到j的距离
+                    d[i][j] = d[i][k] + d[k][j];
+                    path[i][j] = path[k][j];
+                }
+            }
+        }
+    }
+}
+
+void amg_floyd_path_display(AMGraph g, int n, Edge d[n][n], int path[n][n]) {
+    for(int i = 0; i < g.vertex_nums; i++) {
+        for(int j = 0; j < g.vertex_nums; j++) {
+            // 因为Floyd算法计算的是每对顶点之间的最小路径，因此对于有n个顶点的图
+            // 共有n^2个路径
+            // 创建数组保存i..j之间的路径，因为共有n个顶点，所以数组最长为n
+            //      如果为-1，表示没有路径，继续循环
+            //      i=j表示同一个顶点，没有这样的路径，继续循环
+            if(path[i][j] != -1 && i != j) {
+                int tmp[g.vertex_nums];
+                int idx_tmp = 0;
+                tmp[idx_tmp] = j;  // 数组首元素为j，因为每次读取到的下标，为前序顶点，因此tmp数组里的顶点下标，是从后向前的顺序
+                idx_tmp ++;
+
+                int next = path[i][j];
+                while(next != i) {
+                    tmp[idx_tmp] = next;
+                    idx_tmp++;
+                    next = path[i][next];
+                }
+
+                // 补充i
+                tmp[idx_tmp] = i;
+
+                printf("path for %c and %c : ", g.v[i], g.v[j]);
+                for(int i = idx_tmp; i >= 1; i--) { // 因为每次要取i和i-1位置，所以循环判断条件为i>=1
+                    printf("%c -> %c ", g.v[tmp[i]], g.v[tmp[i-1]]);
+                }
+                putchar('\n');
+            }
+        }
+    }
+}
+
 void amg_display(AMGraph g) {
     printf("     ");
     for(int i = 0; i < g.vertex_nums; i++) {
