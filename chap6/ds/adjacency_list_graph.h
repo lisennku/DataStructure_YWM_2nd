@@ -56,6 +56,15 @@ void alg_create_undirected_graph(ALGraph * g);
 // 创建一个无向网
 void alg_create_undirected_net(ALGraph * g);
 
+// 创建一个有向图
+void alg_create_directed_graph(ALGraph * g);
+
+// 拓扑排序中，用于从in_degree数组将入度为0的顶点下标存入栈中
+// void alg_topo_sort_find_zero_in_degree(int * in_degree, int degree_len, int * stack, int * rear);
+
+// 拓扑排序
+bool alg_directed_net_topo_sort(ALGraph g, int * topo);
+
 void alg_create_directed_graph_w_inverse(ALGraph * g, ALGraph * ig);
 
 // 返回无向图中，第一个与指定下标连通的顶点的下标
