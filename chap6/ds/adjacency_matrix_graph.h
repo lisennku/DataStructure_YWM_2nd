@@ -66,6 +66,9 @@ void amg_create_undirected_graph(AMGraph * g);
 // 创建一个无向网
 void amg_create_undirected_net(AMGraph * g);
 
+// 创建一个有向网
+void amg_create_directed_net(AMGraph * g);
+
 // 返回无向图中，第一个与指定下标连通的顶点的下标
 // 若无连通则返回 -1
 int amg_first_adj_vertex_index_undirected_graph(AMGraph g, int v_index);
@@ -89,6 +92,12 @@ void amg_minimum_span_tree_prim(AMGraph g, Vertex v);
 void amg_sort_edges(Edge_Collect * edges, int n);
 
 void amg_minimum_span_tree_kruskal(AMGraph g);
+
+void amg_shortest_path_dijkstra(AMGraph g, int v_index, bool * s, Edge * d, int * path);
+
+
+
+void amg_dijkstra_path_display(AMGraph g, int * path, int v_index);
 
 void amg_display(AMGraph g);
 
