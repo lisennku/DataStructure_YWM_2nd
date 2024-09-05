@@ -49,6 +49,7 @@ void alg_create_undirected_graph(ALGraph * g) {
                 Arc_Node * arn1 = (Arc_Node *) malloc(sizeof(Arc_Node));
                 // 更新索引值
                 arn1->adj_idx = idx2;     // 需要注意存储的是指向的位置的索引
+                arn1->w = -1;  // 表示无权重
                 // 找到v1对应的表头结点，将当前的first_arc的值，赋值给新结点的next_art
                 arn1->next_arc = g->hd[idx1].first_arc;
                 g->hd[idx1].first_arc = arn1;
@@ -56,6 +57,7 @@ void alg_create_undirected_graph(ALGraph * g) {
                 // 再处理 v2 -> v1 的边
                 Arc_Node * arn2 = (Arc_Node *) malloc(sizeof(Arc_Node));
                 arn2->adj_idx = idx1;     // 需要注意存储的是指向的位置的索引
+                arn2->w = -1;  // 表示无权重
                 arn2->next_arc = g->hd[idx2].first_arc;
                 g->hd[idx2].first_arc = arn2;
             }
@@ -101,6 +103,7 @@ void alg_create_directed_graph(ALGraph * g) {
                 Arc_Node * arn1 = (Arc_Node *) malloc(sizeof(Arc_Node));
                 // 更新索引值
                 arn1->adj_idx = idx2;     // 需要注意存储的是指向的位置的索引
+                arn1->w = -1;  // 表示无权重
                 // 找到v1对应的表头结点，将当前的first_arc的值，赋值给新结点的next_art
                 arn1->next_arc = g->hd[idx1].first_arc;
                 g->hd[idx1].first_arc = arn1;
@@ -176,6 +179,114 @@ bool alg_directed_net_topo_sort(ALGraph g, int * topo) {
 
     return topo_idx == g.vertex_nums ? true : false;
 
+}
+
+// 创建一个有向网
+void alg_create_directed_net(ALGraph * g) {
+    // 确定图的顶点和边数
+    printf("please input vertex numbers\n");
+    scanf("%d", &g->vertex_nums);
+    printf("please input edge numbers\n");
+    scanf("%d", &g->edge_nums);
+
+    // 输入图的顶点的值
+    for(int i = 0; i < g->vertex_nums; i++) {
+        printf("please input no. %d vertex value, no duplicated!\n", i);
+        scanf(" %c", &(g->hd[i].data));
+        // 因为hd数组中的各个元素是边链表的头结点，所以需要初始化first_arc指针为NULL
+        g->hd[i].first_arc = NULL;
+    }
+
+    // 根据边的数量，输入边两端的顶点的值
+    for(int i = 0; i < g->edge_nums; i++) {
+        vertex v1, v2;
+        int idx1, idx2;
+        weight w;
+        do {
+            printf("please input a pair of vertex value and weight for no. %d edge\n", i);
+            scanf(" %c %c %d", &v1, &v2, &w);
+            idx1 = alg_locate_vertex(*g, v1);
+            idx2 = alg_locate_vertex(*g, v2);
+            if(idx1 != -1 && idx2 != -1) {
+                // 为了方便，边链表的新结点在表头处插入，也即放到顶点所表示的头结点后
+                // 因为是有向图
+                // 只处理 v1 -> v2 的边
+                Arc_Node * arn1 = (Arc_Node *) malloc(sizeof(Arc_Node));
+                // 更新索引值
+                arn1->adj_idx = idx2;     // 需要注意存储的是指向的位置的索引
+                arn1->w = w;
+                // 找到v1对应的表头结点，将当前的first_arc的值，赋值给新结点的next_art
+                arn1->next_arc = g->hd[idx1].first_arc;
+                g->hd[idx1].first_arc = arn1;
+            }
+            else {
+                printf("vertex value not exist, please re-enter\n");
+            }
+        }while(idx1 == -1 || idx2 == -1);
+    }
+}
+
+// 查找有向网的关键路径
+void alg_critical_path(ALGraph g, const int * topo) {
+    // 初始化ve数组 初始化为0
+    int ve[g.vertex_nums];
+    for(int i = 0; i < g.vertex_nums; i++)
+        ve[i] = 0;
+
+    // 计算ve数组，需要按照topo数组的序列顺序
+    for(int i = 0; i < g.vertex_nums; i++) {
+        int k = topo[i] ;  // 返回此时拓扑序列中的顶点序号
+        Arc_Node * p = g.hd[k].first_arc;  // p指向下标为k的顶点的边，k为该弧的弧尾
+        while(p != NULL) { // 有边时
+            int j = p->adj_idx;  // 找到弧头的下标 后续更新ve数组中下标为j的元素的值
+            // 判断弧头的最早时间+权值，是否小于弧尾的当前最早时间
+            if(ve[j] < ve[k] + p->w)
+                ve[j] = ve[k] + p->w;
+            p = p->next_arc;
+        }
+    }
+
+    // 初始化vl数组 初始化的值为ve数组最后一个元素的值
+    int vl[g.vertex_nums];
+    for(int i = 0; i < g.vertex_nums; i++)
+        vl[i] = ve[g.vertex_nums - 1];
+
+    // 计算vl数组，需要按照topo数组的序列顺序
+    for(int i = g.vertex_nums - 1; i >= 0; i--) {
+        int k = topo[i];  // 返回此时拓扑序列中的顶点序号
+        Arc_Node * p = g.hd[k].first_arc;  // p指向下标为k的顶点的边，k为该弧的弧尾
+        while(p != NULL) {
+            int j = p->adj_idx;  // 找到弧头的下标 后续更新vl数组中下标为k的元素的值
+            if(vl[k] > vl[j] - p->w)
+                vl[k] = vl[j] - p->w;
+            p = p->next_arc;
+        }
+    }
+
+    // 计算e/l，按照顶点数组的顺序
+    for(int i = 0; i < g.vertex_nums; i++) {
+        Arc_Node * p = g.hd[i].first_arc;
+        while(p != NULL) {
+            int j = p->adj_idx;
+            int e = ve[i];
+            int l = vl[j] - p->w;
+            if(e == l) {
+                printf("%c -> %c ", g.hd[i].data, g.hd[j].data);
+            }
+            p = p->next_arc;
+        }
+    }
+
+
+    // 打印ve/vl数组
+    // printf("ve array is \n");
+    // for(int i = 0; i < g.vertex_nums; i++)
+    //     printf("%d ", ve[i]);
+    // putchar('\n');
+    // printf("vl array is \n");
+    // for(int i = 0; i < g.vertex_nums; i++)
+    //     printf("%d ", vl[i]);
+    // putchar('\n');
 }
 
 void alg_create_directed_graph_w_inverse(ALGraph * g, ALGraph * ig) {
@@ -311,7 +422,7 @@ void alg_display(ALGraph g) {
         printf("%c:", g.hd[i].data);
         Arc_Node * p = g.hd[i].first_arc;
         while(p) {
-            printf(" -> %c", g.hd[p->adj_idx].data);
+            printf(" -> %c w: %d", g.hd[p->adj_idx].data, p->w);
             p = p->next_arc;
         }
         putchar('\n');

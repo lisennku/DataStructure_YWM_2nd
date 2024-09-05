@@ -18,13 +18,13 @@ int main() {
     // bool visited[g.vertex_nums];
     // alg_bfs_traverse(g, visited);  // 因为邻接表中，边链表的插入是头插法，所以输出顺序和邻接矩阵不同，但只是顺序不同而已
 
-    alg_create_directed_graph(&g);
+    alg_create_directed_net(&g);
     alg_display(g);
 
     int topo[g.vertex_nums];
     bool b = alg_directed_net_topo_sort(g, topo);
     if(b)
-        printf("topo successfully\n");
+        alg_critical_path(g, topo);
     else
         printf("topo failed\n");
     return 0;

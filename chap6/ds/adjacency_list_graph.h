@@ -65,6 +65,12 @@ void alg_create_directed_graph(ALGraph * g);
 // 拓扑排序
 bool alg_directed_net_topo_sort(ALGraph g, int * topo);
 
+// 创建一个有向网
+void alg_create_directed_net(ALGraph * g);
+
+// 查找有向网的关键路径
+void alg_critical_path(ALGraph g, const int * topo) ;
+
 void alg_create_directed_graph_w_inverse(ALGraph * g, ALGraph * ig);
 
 // 返回无向图中，第一个与指定下标连通的顶点的下标
