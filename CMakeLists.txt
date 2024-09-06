@@ -43,13 +43,14 @@ add_executable(DataStructure_YWM_2nd
         chap6/ds/adjacency_matrix_graph.c
         chap6/ds/adjacency_list_graph.h
         chap6/ds/adjacency_list_graph.c
-        chap6/ds/adjacency_list_graph_test.c
+#        chap6/ds/adjacency_list_graph_test.c
         chap6/ds/orthogonal_list_graph.h
         chap6/ds/orthogonal_list_graph.c
 #        chap6/ds/orthogonal_list_graph_test.c
         chap6/ds/adjacency_multi_list_graph.h
         chap6/ds/adjacency_multi_list_graph.c
-#        chap6/ds/adjacency_multi_list_graph_test.c
+        chap7/ds/sequence_table_search.c
+        #        chap6/ds/adjacency_multi_list_graph_test.c
         #        "chap3/example/3.1 base_convert.c"
 #        "chap3/example/3.2 bracket_match.c"
 #        "chap3/example/3.3 calculate_expression.c"
