@@ -29,7 +29,9 @@ BST_Node * binary_search_tree_search_iterative(BSTree t, key_type target);
 
 BST_Node * binary_search_tree_search_recursive(BSTree t, key_type target);
 
-void binary_search_tree_insert_node(BSTree * t, key_type key);
+void binary_search_tree_insert_node_recursive(BSTree * t, key_type key);
+
+void binary_search_tree_insert_node_iterative(BSTree * t, key_type key);
 
 void binary_search_tree_create(BSTree * t);
 
@@ -66,4 +68,43 @@ BST_Node * binary_search_tree_search_recursive(BSTree t, key_type target) {
         return binary_search_tree_search_recursive(t->right, target);
     if(t->data.key > target)                  // 如果根结点的值大于查找值，说明要去左子树搜索
         return binary_search_tree_search_recursive(t->left, target);
+}
+
+void binary_search_tree_insert_node_recursive(BSTree * t, key_type key) {
+    if(*t == NULL) {
+        BST_Node * p = (BST_Node *) malloc(sizeof(BST_Node));
+        if (p == NULL)
+            exit(-1);
+        p->data.key = key;
+        p->left = p->right = NULL;
+
+        *t = p;
+    }
+
+    else if((*t)->data.key < key)
+        binary_search_tree_insert_node_recursive(&((*t)->right), key);
+    else
+        binary_search_tree_insert_node_recursive(&((*t)->left), key);
+}
+
+void binary_search_tree_insert_node_iterative(BSTree * t, key_type key) {
+    BST_Node * p = (BST_Node *) malloc(sizeof(BST_Node));
+    if(p == NULL)
+        exit(-1);
+    p->data.key = key;
+    p->left = p->right = NULL;
+
+    if (*t == NULL)
+        *t = p;
+    else {
+        BST_Node * tmp = *t;
+        while(tmp != NULL) {
+            if (tmp->data.key < key)
+                tmp = tmp->right;
+            else
+                tmp = tmp->left;
+        }
+        tmp = p;
+    }
+
 }
