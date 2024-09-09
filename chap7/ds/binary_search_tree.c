@@ -38,9 +38,9 @@ void binary_search_tree_create(BSTree * t, const key_type * arr, int len);
 
 int binary_search_tree_delete_node(BSTree * t, key_type key);
 
-void binary_search_tree_in_order_iterative(BSTree t, key_type * arr, int * idx);
+void binary_search_tree_in_order_iterative(BSTree t, key_type * arr, int * ret_size, int * idx);
 
-void binary_search_tree_in_order_recursive(BSTree t, key_type * arr, int * idx);
+void binary_search_tree_in_order_recursive(BSTree t, key_type * arr, int * ret_size, int * idx);
 
 int main() {
     key_type in_arr[MAX_SIZE] = {10, 1, 2, 13, 50, 44, 33, 77, 88, 99};
@@ -49,17 +49,19 @@ int main() {
 
     BSTree tree;
     int index = 0;
+    int ret_size = 0;
     binary_search_tree_create(&tree, in_arr, MAX_SIZE);
     // binary_search_tree_in_order_recursive(tree, out_arr, &index);
-    binary_search_tree_in_order_iterative(tree, out_arr, &index);
-    for(int i = 0; i < MAX_SIZE; i++)
+    binary_search_tree_in_order_iterative(tree, out_arr,&ret_size, &index);
+    for(int i = 0; i < ret_size; i++)
         printf("%d ", out_arr[i]);
     putchar('\n');
 
     binary_search_tree_delete_node(&tree, 10);
     index = 0;
-    binary_search_tree_in_order_iterative(tree, out_arr2, &index);
-    for(int i = 0; i < MAX_SIZE - 1; i++)
+    ret_size = 0;
+    binary_search_tree_in_order_recursive(tree, out_arr2, &ret_size, &index);
+    for(int i = 0; i < ret_size; i++)
         printf("%d ", out_arr2[i]);
     putchar('\n');
     return 0;
@@ -212,7 +214,7 @@ int binary_search_tree_delete_node(BSTree * t, key_type key) {
     return 1;
 }
 
-void binary_search_tree_in_order_iterative(BSTree t, key_type * arr, int * idx) {
+void binary_search_tree_in_order_iterative(BSTree t, key_type * arr, int * ret_size, int * idx) {
     // 使用数组代替栈
     BST_Node * stack[MAX_SIZE];
     int front = 0;
@@ -227,16 +229,18 @@ void binary_search_tree_in_order_iterative(BSTree t, key_type * arr, int * idx) 
         else {
             p = stack[--rear];
             arr[(*idx)++] = p->data.key;
+            (*ret_size)++;
             p = p->right;
         }
     }
 }
 
-void binary_search_tree_in_order_recursive(BSTree t, key_type * arr, int * idx) {
+void binary_search_tree_in_order_recursive(BSTree t, key_type * arr, int * ret_size, int * idx) {
     if(t) {
-        binary_search_tree_in_order_recursive(t->left, arr, idx);
+        binary_search_tree_in_order_recursive(t->left, arr, ret_size, idx);
         arr[*idx] = t->data.key;
         (*idx)++;
-        binary_search_tree_in_order_recursive(t->right, arr, idx);
+        (*ret_size)++;
+        binary_search_tree_in_order_recursive(t->right, arr,ret_size , idx);
     }
 }
