@@ -53,7 +53,9 @@ add_executable(DataStructure_YWM_2nd
 #        chap7/ds/binary_search_tree.c
 #        chap7/ds/avl_tree.c
 #        chap7/ds/b_bree.c
-        chap7/ds/hash_table_opening_address.c
+#        chap7/ds/hash_table_opening_address.c
+#        chap7/exp/287.c
+        chap7/exp/288.c
         #        chap6/ds/adjacency_multi_list_graph_test.c
         #        "chap3/example/3.1 base_convert.c"
 #        "chap3/example/3.2 bracket_match.c"
