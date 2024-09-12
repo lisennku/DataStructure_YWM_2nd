@@ -22,8 +22,8 @@ void generate_sqlist(SqList *sq_list);
 
 /*****************插入排序 start**********************/
 // 直接插入排序
-void straight_insertion_sort_normal(SqList * list, bool asc);
-void straight_insertion_sort_sentinel(SqList * list, bool asc);
+void straight_insertion_sort_normal(SqList * list);
+void straight_insertion_sort_sentinel(SqList * list);
 
 /*****************插入排序 end************************/
 
@@ -34,11 +34,17 @@ int main() {
     for(int i = 1; i <= list.length; i++)
         printf("%d ", list.recs[i].key);
 
+    putchar('\n');
+
+    straight_insertion_sort_normal(&list);
+    for(int i = 1; i <= list.length; i++)
+        printf("%d ", list.recs[i].key);
+
     return 0;
 }
 
 void generate_sqlist(SqList *sq_list) {
-    srand(1); // 设置随机数种子 防止数据变化
+    srand(11); // 设置随机数种子 防止数据变化
 
     sq_list->length = MAXSIZE;
 
@@ -62,23 +68,29 @@ void generate_sqlist(SqList *sq_list) {
 
 /*****************插入排序 start**********************/
 // 直接插入排序
-void straight_insertion_sort_normal(SqList * list, bool asc) {
-    if(asc) {
-        for(int i = 2; i <= list->length; i++) {
+void straight_insertion_sort_normal(SqList * list) {
+        for(int i = 2; i <= list->length; i++)
             if(list->recs[i-1].key > list->recs[i].key) {
                 rec_type tmp = list->recs[i];
-                for(int j = i-1; j >= 1; j--) {
-                    if(list->recs[j].key > tmp.key)
+                int j;
 
-                }
+                // for(j = i-1; j >= 1; j--) {
+                //     if(list->recs[j].key > tmp.key)
+                //         list->recs[j+1] = list->recs[j];
+                //     else
+                //         break;
+                // }
+                // 上述for循环可优化为如下代码
+                // for的循环条件为假则跳出循环 不会执行j-- 类似于else部分的break
+                for(j = i-1; j >= 1 && tmp.key < list->recs[j].key; j--)
+                    list->recs[j+1] = list->recs[j];
+
+                list->recs[j+1] = tmp;
             }
-
-        }
-    }
-    else {
-
-    }
 }
-void straight_insertion_sort_sentinel(SqList * list, bool asc);
+
+void straight_insertion_sort_sentinel(SqList * list) {
+    return;
+}
 
 /*****************插入排序 end************************/
