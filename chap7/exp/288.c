@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAXSIZE 100
 
@@ -21,14 +22,17 @@ typedef struct bst_node BST_Node;
 typedef struct bst_node * BSTree;
 
 void create_binary_search_tree(BSTree * tree, char * inputs, int * index, int len) {
-    if(*index == len)
+    // inputs数组是二叉树前序序列
+    // 根据数组递归的创建二叉树
+    // index在每次递归中负责传递对应位置的字符
+    if(*index == len)                     // 递归基准条件
         return ;
-    if(inputs[*index] == '#') {
+    if(inputs[*index] == '#') {           // #表示当前树结点是空 后续无需递归的创建左右子树
         *tree = NULL;
         (*index)++;
     }
 
-    else {
+    else {                                // 非空树 创建当前根结点 然后递归创建左右子树
         *tree = (BST_Node *) malloc(sizeof(BST_Node));
         if(*tree == NULL)
             exit(-1);
@@ -43,6 +47,8 @@ void create_binary_search_tree(BSTree * tree, char * inputs, int * index, int le
 }
 
 void in_order_traverse(BSTree tree, char * ret_arr, int * ret_size, int * index) {
+    // 中序遍历
+    // 将中序的字符保存在ret_arr内
     if(tree) {
         in_order_traverse(tree->left, ret_arr, ret_size, index);
         ret_arr[*index] = tree->key;
@@ -52,7 +58,19 @@ void in_order_traverse(BSTree tree, char * ret_arr, int * ret_size, int * index)
     }
 }
 
-bool is_binary_search_tree(BSTree tree);
+bool is_binary_search_tree(BSTree tree) {
+    char ret_arr[MAXSIZE];
+    int ret_size = 0;
+    int index = 0;
+
+    in_order_traverse(tree, ret_arr, &ret_size, &index);
+
+    for(int i = 0; i < ret_size - 1; i++)
+        if(ret_arr[i] >= ret_arr[i+1])
+            return false;
+
+    return true;
+}
 
 void result_output(bool flag) {
     if(flag)
@@ -63,18 +81,20 @@ void result_output(bool flag) {
 
 int main() {
 
-    char inputs[7] = "ba##c##";
-    BSTree tree = NULL;
-    int index = 0;
-    create_binary_search_tree(&tree, inputs, &index, 7);
+    char inputs[MAXSIZE];
+    while(scanf("%s", inputs) == 1 && inputs[0] != '#') {
+        BSTree tree;
 
-    char result[MAXSIZE];
-    int ret_size = 0;
-    index = 0;
-    in_order_traverse(tree, result, &ret_size, &index);
+        int inputs_len = strlen(inputs);
+        int inputs_index = 0;
+        bool flag;
 
-    for(int i = 0; i < ret_size; i++)
-        printf("%c ", result[i]);
+        create_binary_search_tree(&tree, inputs, &inputs_index, inputs_len);
+        flag = is_binary_search_tree(tree);
+
+        result_output(flag);
+
+    }
 
     return 0;
 }
