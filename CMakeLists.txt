@@ -57,7 +57,9 @@ add_executable(DataStructure_YWM_2nd
 #        chap7/exp/287.c
 #        chap7/exp/288.c
 #        chap7/exp/289.c
-        chap7/exp/290.c
+#        chap7/exp/290.c
+#        chap7/exp/291.c
+        chap8/ds/sorting.c
         #        chap6/ds/adjacency_multi_list_graph_test.c
         #        "chap3/example/3.1 base_convert.c"
 #        "chap3/example/3.2 bracket_match.c"
