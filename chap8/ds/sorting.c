@@ -220,6 +220,44 @@ void bubble_sort_optimized(SqList * list, bool asc) {
         }
     }
 }
+
+// 快速排序中每趟排序
+// 返回枢轴最终的位置
+int quick_sort_partitions(SqList * list, int low, int high, bool asc) {
+    // 用于快排中的每趟排序
+    // 以左端为枢轴
+    list->recs[0] = list->recs[low];
+    key_type pivot_value = list->recs[0].key;
+
+    // 先从右端开始 找到和pivot_value比较后需要交换位置的地方
+    //      找到后和枢轴所在位置进行交换 初次在low位 后续的交换也都在low位
+    // 再从左端开始 找到和pivot_value比较后需要交换位置的地方
+    //      找到后和high位交换 因为上边执行后可能会交换 交换后在high位
+    // 如果第一步没交换 说明有序 有序则第二步也不会发生交换
+    // 交替进行 直到low == high
+    while(low < high) {
+        while(low < high && compare(&list->recs[high].key, &pivot_value, asc) <= 0)
+            high --;
+        list->recs[low] = list->recs[high];
+
+        while(low < high && compare(&list->recs[low].key, &pivot_value, asc) <= 0)
+            low ++;
+        list->recs[high] = list->recs[low];
+    }
+
+    list->recs[low] = list->recs[0];
+
+    return low;
+}
+
+// 快速排序 递归版
+void quick_sort_recursive(SqList * list, int low, int high, bool asc) {
+    if(low < high) {
+        int pivot_loc = quick_sort_partitions(list, low, high, asc);
+        quick_sort_recursive(list, low, pivot_loc - 1, asc);
+        quick_sort_recursive(list, pivot_loc + 1, high, asc);
+    }
+}
 /*****************交换排序 end************************/
 
 int main() {
@@ -227,7 +265,7 @@ int main() {
     generate_sqlist(&list);
     print_sqlist(list);
 
-    bubble_sort_optimized(&list, false);
+    quick_sort_recursive(&list, 1, 20, true);
     print_sqlist(list);
 
 
