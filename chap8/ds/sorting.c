@@ -236,11 +236,11 @@ int quick_sort_partitions(SqList * list, int low, int high, bool asc) {
     // 如果第一步没交换 说明有序 有序则第二步也不会发生交换
     // 交替进行 直到low == high
     while(low < high) {
-        while(low < high && compare(&list->recs[high].key, &pivot_value, asc) <= 0)
+        while(low < high && compare(&list->recs[high].key, &pivot_value, asc) > 0)
             high --;
         list->recs[low] = list->recs[high];
 
-        while(low < high && compare(&list->recs[low].key, &pivot_value, asc) <= 0)
+        while(low < high && compare(&list->recs[low].key, &pivot_value, asc) < 0)
             low ++;
         list->recs[high] = list->recs[low];
     }
