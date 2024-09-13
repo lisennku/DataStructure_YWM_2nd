@@ -20,38 +20,6 @@ typedef struct seq_list {             // 顺序表类型
 
 /*****************辅助函数 start**********************/
 // 生成序列
-void generate_sqlist(SqList *sq_list);
-// 关键值比较 控制正序倒叙
-int compare(void * a, void * b, bool asc);
-
-/*****************辅助函数 start**********************/
-
-/*****************插入排序 start**********************/
-// 直接插入排序
-void asc_straight_insertion_sort_normal(SqList * list);    // 普通
-void asc_straight_insertion_sort_sentinel(SqList * list);  // 哨兵
-void straight_insertion_sort(SqList * list, bool asc);     // 参数控制正序倒叙
-
-/*****************插入排序 end************************/
-
-int main() {
-    SqList list;
-    generate_sqlist(&list);
-
-    for(int i = 1; i <= list.length; i++)
-        printf("%d ", list.recs[i].key);
-
-    putchar('\n');
-
-    straight_insertion_sort(&list, false);
-    for(int i = 1; i <= list.length; i++)
-        printf("%d ", list.recs[i].key);
-
-    return 0;
-}
-
-/*****************辅助函数 start**********************/
-// 生成序列
 void generate_sqlist(SqList *sq_list) {
     srand(11); // 设置随机数种子 防止数据变化
 
@@ -99,6 +67,12 @@ int compare(void * a, void * b, bool asc) {
     return asc ? aa - bb : bb - aa;
 }
 
+// 打印序列
+void print_sqlist(SqList list) {
+    for(int i = 1; i <= list.length; i++)
+        printf("%d ", list.recs[i].key);
+    putchar('\n');
+}
 /*****************辅助函数 start**********************/
 
 
@@ -157,4 +131,106 @@ void straight_insertion_sort(SqList * list, bool asc) {
 
 }
 
+// 折半插入排序
+void binary_insertion_sort(SqList * list, bool asc) {
+    for(int i = 2; i <= list->length; i++) {
+        list->recs[0] = list->recs[i];    // 设置哨兵位
+        int low = 1;
+        int high = i - 1;
+
+        // 折半查找插入位置
+        while(low <= high) {
+            int mid = (low + high) / 2;
+            // compare函数
+            // 正序时 返回值大于0 表示a>b 此时需要查找左侧 因为已排序部分是正序
+            // 倒叙时 返回值大于0 表示a<b 此时需要查找左侧 因为已排序部分是倒叙
+            if(compare(&list->recs[mid].key, &list->recs[0].key, asc) > 0)
+                high = mid - 1;
+            else
+                low = mid + 1;
+        }
+
+        for(int j = i-1; j > high; j--)
+            list->recs[j+1] = list->recs[j];
+
+        list->recs[high + 1] = list->recs[0];
+
+    }
+}
+
+// 希尔排序
+void shell_sort(SqList * list, bool asc) {
+    // 根据长度 自动生成每次增量
+    for(int di = list->length / 2; di >= 1; di /= 2) {
+        // 从di+1开始 表示两个含义
+        //      1. 前di个元素 每个元素为一个分组 1和di+1 2和di+2 等等为一组
+        //      2. 每个分组内认为有序 因为每个分组只有一个元素
+        // 每次循环 比较对应有序分组内的最后一个元素 和无序分组内的待插入的元素
+        // 每次移动 都是针对整个有序分组
+        for(int i = di+1; i <= list->length; i++) {
+            list->recs[0] = list->recs[i];
+            int j = i - di;
+            // j > 0 是因为每次j的递减量是di 而不是1 但是如果用j>=1应该也可以
+            while(j > 0 && compare(&list->recs[j].key, &list->recs[0].key, asc) > 0) {
+                list->recs[j+di] = list->recs[j];
+                j -= di;
+            }
+            list->recs[j+di] = list->recs[0];
+        }
+    }
+
+}
 /*****************插入排序 end************************/
+
+/*****************交换排序 start**********************/
+// 冒泡排序 未优化的双循环
+void bubble_sort_normal(SqList * list, bool asc) {
+    // 基本冒泡排序的逻辑
+    //  冒泡排序使用序列的末尾作为有序序列部分
+    //  每趟排序过程 将符合要求的元素 放到有序序列的首位
+    //  因此 对于第i趟排序 符合要求的元素应该放到n-i+1的位置
+    // 外层循环控制无序序列 每次长度减掉1 每结束一次循环 表示当前序列的最后一位已经确定
+    // 内层循环 从无序序列首位开始 两两比较 最后一次循环 应该是无序序列的倒数第二位
+    // 函数存在一个问题 如果序列已经完全有序 虽然没发生交换 但是仍然会继续循环 因此存在优化空间
+    for(int i = list->length; i >= 1; i--){
+        for(int j = 1; j <= i - 1; j++) {
+            if(compare(&list->recs[j].key, &list->recs[j+1].key, asc) > 0) {
+                rec_type tmp = list->recs[j+1];
+                list->recs[j+1] = list->recs[j];
+                list->recs[j] = tmp;
+            }
+        }
+    }
+}
+
+// 冒泡排序 优化
+void bubble_sort_optimized(SqList * list, bool asc) {
+    // 设置标记位 表示当前循环是否发生交换 如果没有发生则直接结束
+    bool is_swap = true;
+    for(int i = list->length; i >= 1 && is_swap;i--) {
+        // 每次循环重置is_swap变量为false 发生交换 赋值为true
+        is_swap = false;
+        for(int j = 1; j <= i - 1; j++) {
+            if(compare(&list->recs[j].key, &list->recs[j+1].key, asc) > 0) {
+                is_swap = true;
+                rec_type tmp = list->recs[j+1];
+                list->recs[j+1] = list->recs[j];
+                list->recs[j] = tmp;
+            }
+        }
+    }
+}
+/*****************交换排序 end************************/
+
+int main() {
+    SqList list;
+    generate_sqlist(&list);
+    print_sqlist(list);
+
+    bubble_sort_optimized(&list, false);
+    print_sqlist(list);
+
+
+    return 0;
+}
+
