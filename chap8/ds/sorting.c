@@ -19,6 +19,7 @@ typedef struct seq_list {             // 顺序表类型
 } SqList;
 
 /*****************辅助函数 start**********************/
+
 // 生成序列
 void generate_sqlist(SqList *sq_list) {
     srand(11); // 设置随机数种子 防止数据变化
@@ -73,10 +74,12 @@ void print_sqlist(SqList list) {
         printf("%d ", list.recs[i].key);
     putchar('\n');
 }
+
 /*****************辅助函数 start**********************/
 
 
 /*****************插入排序 start**********************/
+
 // 正序直接插入排序 普通
 void asc_straight_insertion_sort_normal(SqList * list) {
         for(int i = 2; i <= list->length; i++)                            // 循环从第二位开始，默认第一位是一个有序序列
@@ -180,9 +183,11 @@ void shell_sort(SqList * list, bool asc) {
     }
 
 }
+
 /*****************插入排序 end************************/
 
 /*****************交换排序 start**********************/
+
 // 冒泡排序 未优化的双循环
 void bubble_sort_normal(SqList * list, bool asc) {
     // 基本冒泡排序的逻辑
@@ -258,29 +263,164 @@ int quick_sort_partitions(SqList * list, int low, int high, bool asc) {
 }
 
 // 快速排序 递归版
-void quick_sort_process(SqList * list, int low, int high, bool asc) {
+void quick_sort_recursive_process(SqList * list, int low, int high, bool asc) {
     if(low < high) {
         int pivot_loc = quick_sort_partitions(list, low, high, asc);
-        quick_sort_process(list, low, pivot_loc - 1, asc);
-        quick_sort_process(list, pivot_loc + 1, high, asc);
+        quick_sort_recursive_process(list, low, pivot_loc - 1, asc);
+        quick_sort_recursive_process(list, pivot_loc + 1, high, asc);
     }
 }
 
 // 快速排序
 void quick_sort_recursive(SqList * list, bool asc) {
-    quick_sort_process(list, 1, list->length, asc);
+    quick_sort_recursive_process(list, 1, list->length, asc);
 }
 
 /*****************交换排序 end************************/
 
+/*****************选择排序 start**********************/
+
+// 简单选择排序
+void simple_selection_sort(SqList * list, bool asc) {
+    for(int i = 1; i < list->length; i++) {
+        int k = i;  // 临时变量 记录此时的i值
+        for(int j = i+1; j <= list->length; j++) {
+            // 简单选择排序并不会在内层循环里 发生实际的交换 而是记录每次循环需要交换的下标
+            // 正序排序时 每趟排序要找到当前未排序序列的最小值 compare(j, k) 需要 小于0 j-k < 0
+            // 倒序排序时 每趟排序要找到当前未排序序列的最大值 compare(j, k) 需要 小于0 k-j < 0
+            if(compare(&list->recs[j].key, &list->recs[k].key, asc) < 0)
+                k = j;
+        }
+        if(k != i) {
+            rec_type tmp = list->recs[k];
+            list->recs[k] = list->recs[i];
+            list->recs[i] = tmp;
+        }
+    }
+}
+
+// 堆排序调整函数
+// 此时list[s+1:m]是堆 目的是将list[s:m]调整为堆
+// 正序排序使用最大堆 倒序排序使用最小堆
+void heap_adjust(SqList * list, int s, int m, bool asc) {
+    // 堆调整函数
+    // 以正序解释函数逻辑
+    // 目的是将序列r[s...m]调整为堆 而r[s+1...m]已经是堆
+    // 先取出s的左右结点的最大结点 判断s和该结点的大小关系
+    //      如果根大于结点 说明已经是堆
+    //      如果小于结点 则交换根和结点的位置
+    // 再以该子树为树 重复过程
+
+    // 保存旧根结点 如果需要更新 每次将子结点的值存到根的位置 退出循环后需要将该值放到找到的位置
+    rec_type old_root = list->recs[s];
+
+    for(int i = 2 * s; i <= m; i *= 2) {      // 查找s的子结点 但是要注意长度
+        // 判断使用哪个子结点
+        // 正序时使用最大堆 若compare < 0 说明 a < b 则应该使用b
+        // 倒序时使用最小堆 若compare < 0 说明 a > b 则应该使用b
+        if(i < m && compare(&list->recs[i].key, &list->recs[i+1], asc) < 0)
+            i ++;
+
+        // 判断r[s]和左右子树的关系 由于始终要调整的是r[s]的位置 而s又会变化 所以使用old_root变量
+        // 正序时使用最大堆 若compare > 0 说明 a > b 说明此时已经是堆 退出
+        // 倒序时使用最小堆 若compare > 0 说明 a < b 说明此时已经是堆 退出
+        if(compare(&old_root.key, &list->recs[i].key, asc) > 0)
+            break;
+
+        // 将对应子树的值换到根部 同时更新s 保留初始r[s]应插入的位置
+        // 继续循环 就是将i为根结点的子树调整为堆
+        list->recs[s] = list->recs[i];
+        s = i;
+    }
+
+    // 循环退出时的s就是最开始r[s]元素应该移动到的地方
+    list->recs[s] = old_root;
+}
+
+// 堆排序建初堆
+void heap_init(SqList * list, bool asc) {
+    // 对于一个序列 因其是按照完全二叉树存储 根据完全二叉树性质 n/2后的都是叶结点
+    // 因此这些结点都可认为是堆
+    // 现在要做的 就是从n/2开始 将该结点和后面的结点一起初始化为堆
+    for(int i = list->length / 2; i >= 1; i--)
+        heap_adjust(list, i, list->length, asc);
+}
+
+// 堆排序
+void heap_sort(SqList * list, bool asc) {
+    // 建初堆
+    heap_init(list, asc);
+
+    // 每次循环 将堆首与当前循环的序列的最后一位交换位置
+    for(int i = list->length; i > 1; i--) {
+        rec_type tmp= list->recs[1];
+        list->recs[1] = list->recs[i];
+        list->recs[i] = tmp;
+
+        heap_adjust(list, 1, i-1, asc);
+
+    }
+}
+
+/*****************选择排序 end************************/
+
+/*****************归并排序 start**********************/
+
+// 二路归并排序 合并相邻子序列
+void two_way_merge_sub_process(SqList * list, SqList * target, int low, int mid, int high, bool asc) {
+    // 合并两个子序列 并将合并后的值存入target
+    // low表示第一个子序列的开始，mid表示第一个子序列的结束
+    // mid+1表示第二个子序列的开始，high表示第二个子序列的结束
+    int i = low;
+    int j = mid + 1;
+    int target_idx = low;
+    // 确保不越界
+    while(i <= mid && j <= high) {
+        // compare > 0 说明 a > b asc 或 a < b desc
+        // 则都需要将b放入target里
+        // 其他时 需要将a放到target里
+        if(compare(&list->recs[i].key, &list->recs[j].key, asc) > 0)
+            target->recs[target_idx++] = list->recs[j++];
+        else
+            target->recs[target_idx++] = list->recs[i++];
+    }
+
+    // 剩余的直接放入target
+    // 两个while只会执行一个
+    while(i <= mid)
+        target->recs[target_idx++] = list->recs[i++];
+    while(j <= high)
+        target->recs[target_idx++] = list->recs[j++];
+}
+
+// 二路归并排序 递归
+void two_way_merge_recursive(SqList * list);
+
+// 二路归并排序 迭代
+void two_way_merge_iterative(SqList * list, bool asc) {
+    SqList target;
+    target.length = list->length;
+    for(int sub_len = 1; sub_len < list->length; sub_len *= 2) {
+        for (int i = 1; i <=list->length ; i = i + 2 * sub_len) {
+            int mid = (i + sub_len - 1 <= list->length ? i + sub_len - 1 : list->length);
+            int high = (i + 2*sub_len - 1 <= list->length ? i + 2*sub_len - 1 : list->length);
+
+            two_way_merge_sub_process(list, &target, i, mid, high, asc);
+        }
+        for(int i = 1; i <= list->length; i++)
+            list->recs[i] = target.recs[i];
+    }
+}
+
+
+/*****************归并排序 end************************/
 int main() {
     SqList list;
     generate_sqlist(&list);
     print_sqlist(list);
 
-    quick_sort_recursive(&list, true);
+    two_way_merge_iterative(&list, false);
     print_sqlist(list);
-
 
     return 0;
 }
