@@ -236,10 +236,17 @@ int quick_sort_partitions(SqList * list, int low, int high, bool asc) {
     // 如果第一步没交换 说明有序 有序则第二步也不会发生交换
     // 交替进行 直到low == high
     while(low < high) {
+        // 如果是正序 那么右端比枢轴小的 要交换位置 否则只移动指针high
+        //      此时 compare返回值大于0 表示high位置比枢轴的大 不需要移动
+        // 如果是倒序 那么右端比枢轴大的 要交换位置 否则只移动指针high
+        //      此时 compare返回值大于0 表示high位置比枢轴的小 不需要移动
         while(low < high && compare(&list->recs[high].key, &pivot_value, asc) > 0)
             high --;
         list->recs[low] = list->recs[high];
-
+        // 如果是正序 那么左端比枢轴大的 要交换位置 否则只移动指针low
+        //      此时 compare返回值小于0 表示low位置比枢轴的小 不需要移动
+        // 如果是倒序 那么左端比枢轴小的 要交换位置 否则只移动指针low
+        //      此时 compare返回值小于0 表示low位置比枢轴的大 不需要移动
         while(low < high && compare(&list->recs[low].key, &pivot_value, asc) < 0)
             low ++;
         list->recs[high] = list->recs[low];
@@ -251,13 +258,19 @@ int quick_sort_partitions(SqList * list, int low, int high, bool asc) {
 }
 
 // 快速排序 递归版
-void quick_sort_recursive(SqList * list, int low, int high, bool asc) {
+void quick_sort_process(SqList * list, int low, int high, bool asc) {
     if(low < high) {
         int pivot_loc = quick_sort_partitions(list, low, high, asc);
-        quick_sort_recursive(list, low, pivot_loc - 1, asc);
-        quick_sort_recursive(list, pivot_loc + 1, high, asc);
+        quick_sort_process(list, low, pivot_loc - 1, asc);
+        quick_sort_process(list, pivot_loc + 1, high, asc);
     }
 }
+
+// 快速排序
+void quick_sort_recursive(SqList * list, bool asc) {
+    quick_sort_process(list, 1, list->length, asc);
+}
+
 /*****************交换排序 end************************/
 
 int main() {
@@ -265,7 +278,7 @@ int main() {
     generate_sqlist(&list);
     print_sqlist(list);
 
-    quick_sort_recursive(&list, 1, 20, true);
+    quick_sort_recursive(&list, true);
     print_sqlist(list);
 
 
