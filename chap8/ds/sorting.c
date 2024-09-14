@@ -393,11 +393,27 @@ void two_way_merge_sub_process(SqList * list, SqList * target, int low, int mid,
         target->recs[target_idx++] = list->recs[j++];
 }
 
+// 二路归并排序 递归过程
+void two_way_merge_recursive_process(SqList * list, SqList * target, int low, int high, bool asc) {
+    // 每次递归到low=high 将元素从list复制到target里
+    if(low == high)
+        target->recs[low] = list->recs[low];
+    else {
+        int mid = (low + high) / 2;
+        two_way_merge_recursive_process(list, target, low, mid, asc);
+        two_way_merge_recursive_process(list, target, )
+    }
+}
+
 // 二路归并排序 递归
-void two_way_merge_recursive(SqList * list);
+void two_way_merge_sort_recursive(SqList * list, bool asc) {
+    SqList target;
+    target.length = list->length;
+    two_way_merge_recursive_process(list, list, 1, list->length, asc);
+}
 
 // 二路归并排序 迭代
-void two_way_merge_iterative(SqList * list, bool asc) {
+void two_way_merge_sort_iterative(SqList * list, bool asc) {
     SqList target;
     target.length = list->length;
     for(int sub_len = 1; sub_len < list->length; sub_len *= 2) {
@@ -419,7 +435,7 @@ int main() {
     generate_sqlist(&list);
     print_sqlist(list);
 
-    two_way_merge_iterative(&list, false);
+    two_way_merge_sort_iterative(&list, false);
     print_sqlist(list);
 
     return 0;
