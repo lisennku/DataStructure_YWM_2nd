@@ -394,22 +394,27 @@ void two_way_merge_sub_process(SqList * list, SqList * target, int low, int mid,
 }
 
 // 二路归并排序 递归过程
-void two_way_merge_recursive_process(SqList * list, SqList * target, int low, int high, bool asc) {
-    // 每次递归到low=high 将元素从list复制到target里
+void two_way_merge_recursive_process(SqList * list, SqList * target, SqList * tmp, int low, int high, bool asc) {
+    // 每次递归到low=high 将元素从list复制到tmp里
     if(low == high)
-        target->recs[low] = list->recs[low];
+        tmp->recs[low] = list->recs[low];
     else {
         int mid = (low + high) / 2;
-        two_way_merge_recursive_process(list, target, low, mid, asc);
-        two_way_merge_recursive_process(list, target, )
+        two_way_merge_recursive_process(list, target, tmp, low, mid, asc);
+        two_way_merge_recursive_process(list, target, tmp, mid + 1, high, asc);
+        two_way_merge_sub_process(tmp, target, low, mid, high, asc);
+        // 每次排序后 排序的子序列在target里 但是sub_process需要将有序的tmp和target合并
+        // 所以此处按照target目前有序的长度，覆盖tmp
+        for(int i = 1; i <= high; i++)
+            tmp->recs[i] = target->recs[i];
     }
 }
 
 // 二路归并排序 递归
 void two_way_merge_sort_recursive(SqList * list, bool asc) {
-    SqList target;
-    target.length = list->length;
-    two_way_merge_recursive_process(list, list, 1, list->length, asc);
+    SqList tmp;
+    tmp.length = list->length;
+    two_way_merge_recursive_process(list, list, &tmp,  1, list->length, asc);
 }
 
 // 二路归并排序 迭代
@@ -435,7 +440,7 @@ int main() {
     generate_sqlist(&list);
     print_sqlist(list);
 
-    two_way_merge_sort_iterative(&list, false);
+    two_way_merge_sort_recursive(&list, false);
     print_sqlist(list);
 
     return 0;
