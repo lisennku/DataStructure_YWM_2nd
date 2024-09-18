@@ -4,8 +4,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
-#define MAXSIZE 20
+// 排序数据类型 基数排序除外
+#define MAXSIZE 6
 
 typedef int key_type;                 // 关键字
 
@@ -433,15 +435,169 @@ void two_way_merge_sort_iterative(SqList * list, bool asc) {
     }
 }
 
-
 /*****************归并排序 end************************/
-int main() {
-    SqList list;
-    generate_sqlist(&list);
-    print_sqlist(list);
 
-    two_way_merge_sort_recursive(&list, false);
-    print_sqlist(list);
+/*****************分配排序 start**********************/
+
+// 基数排序数据类型
+// 基数排序宏定义
+#define MAXNUM_KEY 8
+#define RADIX 10
+#define MAX_SPACE 1000
+
+// 静态链表结点类型
+typedef struct {
+    key_type keys[MAXNUM_KEY];
+    int next;
+} SLCell;
+
+// 静态链表 类型
+typedef struct {
+    SLCell recs[MAX_SPACE];
+    key_type nums[MAX_SPACE];
+    int keys_length;                    // 存储关键字长度
+    int rec_nums;                       // 存储记录总数
+}SLList;
+
+typedef int Radix_List[RADIX];          // 存储各个基数的数组 内容为下标
+
+void generate_sllist(SLList *list) {
+    srand(11); // 设置随机数种子 防止数据变化
+
+    list->rec_nums = MAXSIZE;
+    list->keys_length = 3;
+    for(int i = 1; i < list->rec_nums; i++)
+        for(int j = 0; j < 3; j++)
+            list->recs[i].keys[j] = -1;
+
+
+    int cnt = 1;
+
+    while(cnt <= list->rec_nums) {
+        bool dup_flag = false;
+        int rand_int = rand() % 1000 + 1; // 随机生成1-1000的整数
+
+        for(int i = 1; i <= cnt - 1; i++) {
+            if(list->nums[i] == rand_int) {
+                dup_flag = true;
+                break;
+            }
+        }
+        if(!dup_flag) {
+            list->nums[cnt] = rand_int;
+            cnt ++;
+        }
+    }
+
+    for(int i = 1; i < list->rec_nums; i++) {
+        int tmp = list->nums[i];
+        int idx = 2;
+        while(tmp != 0) {
+            list->recs[i].keys[idx] = tmp % 10;
+            idx --;
+            tmp = tmp / 10;
+        }
+        if(list->recs[i].keys[1] == -1)
+            list->recs[i].keys[1] = 0;
+        if(list->recs[i].keys[0] == -1)
+            list->recs[i].keys[0] = 0;
+    }
+}
+
+
+// 基数排序 找到下一个下标
+int sub_radix_sort_find_next_index(int cur_index) {
+    return cur_index + 1;
+}
+
+// 基数排序 分配函数
+void radix_sort_distribute(SLCell * recs, int radix_index, Radix_List  f, Radix_List  e) {
+    // radix_index指向的是关键字的第几位 从低位到高位 此时为2到0 的顺序
+    // f和e是分组数组 下标表示的是基数的范围 从0到9
+    // f存储的是分组内第一个元素的下标 e存储的是最后一个元素的下标
+
+    // 该函数使得每个分组内的元素彼此链接
+
+    // 初始化f
+    for(int i = 0; i < RADIX; i++)
+        f[i] = 0;
+
+    for(int p = recs[0].next; p; p = recs[p].next) {
+        int j = recs[p].keys[radix_index];    // 对应下标
+        if(f[j] == 0)                         // 如果此时f[j]没有指向 则指向p
+            f[j] = p;
+        else                                  // 如果有指向了 则更新最后一个元素的next 使其指向p
+            recs[e[j]].next = p;
+        e[j] = p;                             // 更新e数组
+    }
+}
+
+// 基数排序 收集函数
+void radix_sort_collect(SLCell * recs, int radix_index, const Radix_List  f, const Radix_List e) {
+    // 该函数负责将各个非空的radix数组里的最后一个元素和第一个元素相连
+    int j ;
+    for(j = 0; f[j] == 0; j = sub_radix_sort_find_next_index(j));
+    recs[0].next = f[j];
+    int t = e[j];
+    while(j < RADIX-1) {
+        for(j = sub_radix_sort_find_next_index(j); j < RADIX - 1 && f[j] == 0; j = sub_radix_sort_find_next_index(j));
+        if(f[j]) {
+            recs[t].next = f[j];
+            t = e[j];
+        }
+    }
+    recs[t].next = 0;
+}
+
+// 基数排序
+void radix_sort(SLList * list) {
+    for(int i = 0; i < list->rec_nums; i++)
+        list->recs[i].next = i+1;                // 更新next
+    list->recs[list->rec_nums].next = 0;         // 最后一个元素 next需要为0
+    Radix_List f;
+    Radix_List e;
+    for(int i = list->keys_length - 1; i >= 0; i--) {
+        radix_sort_distribute(list->recs, i, f, e);
+        radix_sort_collect(list->recs, i, f, e);
+    }
+}
+
+/*****************分配排序 end************************/
+
+
+int main() {
+    // SqList list;
+    // generate_sqlist(&list);
+    // print_sqlist(list);
+    //
+    // two_way_merge_sort_recursive(&list, false);
+    // print_sqlist(list);
+
+    SLList list;
+    generate_sllist(&list);
+    for(int i = 1; i < list.rec_nums; i++)
+        printf("%d ", list.nums[i]);
+    putchar('\n');
+    for(int i = 1; i < list.rec_nums; i++) {
+        for(int j = 0; j < 3; j++)
+            printf("%d", list.recs[i].keys[j]);
+        putchar(' ');
+    }
+    putchar('\n');
+
+    radix_sort(&list);
+
+    int p = list.recs[0].next;
+
+    while(p) {
+        for(int i = 0; i < 3; i++)
+            printf("%d", list.recs[p].keys[i]);
+        putchar('\n');
+        p = list.recs[p].next;
+    }
+
+
+
 
     return 0;
 }
