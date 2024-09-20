@@ -6,7 +6,8 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-#        chap2/ds/array_list.h
+        BJFUOJ/204.c
+        #        chap2/ds/array_list.h
 #        chap2/ds/single_linked_list.h
 #        chap2/ds/loop_list.h
 #        chap2/ds/loop_list.c
@@ -59,7 +60,7 @@ add_executable(DataStructure_YWM_2nd
 #        chap7/exp/289.c
 #        chap7/exp/290.c
 #        chap7/exp/291.c
-        chap8/ds/sorting.c
+#        chap8/ds/sorting.c
         #        chap6/ds/adjacency_multi_list_graph_test.c
         #        "chap3/example/3.1 base_convert.c"
 #        "chap3/example/3.2 bracket_match.c"
