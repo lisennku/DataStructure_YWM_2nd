@@ -1,12 +1,13 @@
 //
-// Created by lisen on 24-9-20.
+// Created by lisen on 24-10-8.
 //
-// https://www.bjfuacm.com/problem/204
+// https://www.bjfuacm.com/problem/205
 
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
-#define MAXSIZE 100
+#define MAXSIZE 200
 #define TITL_MAXSIZE 100
 
 typedef struct {
@@ -22,10 +23,13 @@ typedef struct {
 
 void fill_seq_list(seq_list * list);
 void display_list(seq_list list);
+void bubble_sort_desc(seq_list * list);
 
 int main() {
     seq_list list ;
     fill_seq_list(&list);
+    // display_list(list);
+    bubble_sort_desc(&list);
     display_list(list);
     return 0;
 }
@@ -46,8 +50,25 @@ void fill_seq_list(seq_list * list) {
         list->length ++;
     }
 }
+
 void display_list(seq_list list) {
-    printf("%d\n", list.length);
+    // printf("%d\n", list.length);
     for(int i = 0; i < list.length; i++)
         printf("%s %s %.2lf\n", list.list[i].isbn, list.list[i].title, list.list[i].price);
+}
+
+void bubble_sort_desc(seq_list * list) {
+    int n = list->length;
+    bool is_swap = true;
+    for(int i = n-1; i >= 0 && is_swap; i--) {
+        is_swap = false;
+        for(int j = 0; j <= i - 1; j++) {
+            if(list->list[j].price < list->list[j+1].price) {
+                is_swap = true;
+                seq_book_item tmp = list->list[j+1];
+                list->list[j+1] = list->list[j];
+                list->list[j] = tmp;
+            }
+        }
+    }
 }

@@ -6,7 +6,9 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-        BJFUOJ/204.c
+        BJFUOJ/206.c
+        #        BJFUOJ/204.c
+#        BJFUOJ/205.c
         #        chap2/ds/array_list.h
 #        chap2/ds/single_linked_list.h
 #        chap2/ds/loop_list.h
