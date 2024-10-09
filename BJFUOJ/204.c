@@ -3,8 +3,9 @@
 //
 // https://www.bjfuacm.com/problem/204
 
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
+
 
 #define MAXSIZE 100
 #define TITL_MAXSIZE 100
