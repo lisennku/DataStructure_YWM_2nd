@@ -13,4 +13,18 @@ bool isValidSudoku(char** board, int boardSize, int* boardColSize) {
     int col[9][9] = {0};
     int sub[9][9] = {0};
 
+    for(int i = 0; i < 9; i++) {
+        for(int j = 0; j < 9; j++) {
+            int c = board[i][j] - '1';
+            int idx = (i/3) * 3 + j/3;
+            if(board[i][j] == '.')
+                continue;
+            if(row[i][c] != 0 || col[j][c] != 0 || sub[idx][c] != 0)
+                return false;
+            row[i][c]++;
+            col[j][c]++;
+            sub[idx][c]++;
+        }
+    }
+    return true;
 }
