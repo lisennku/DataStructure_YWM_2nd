@@ -13,7 +13,9 @@ add_executable(DataStructure_YWM_2nd
 #        BJFUOJ/210.c
 #        BJFUOJ/211.c
 #        BJFUOJ/212.c
-        BJFUOJ/213.c
+#        BJFUOJ/213.c
+#        Leetcode/36.valid-sudoku.c
+        Leetcode/15.3sum.c
         #        BJFUOJ/204.c
 #        BJFUOJ/205.c
         #        chap2/ds/array_list.h
