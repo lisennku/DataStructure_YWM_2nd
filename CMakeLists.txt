@@ -6,7 +6,9 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-#        BJFUOJ/206.c
+#        Leetcode/47.permutations-ii.c
+        Leetcode/77.combinations.c
+        #        BJFUOJ/206.c
 #        BJFUOJ/207.c
 #        BJFUOJ/208.c
 #        BJFUOJ/209.c
@@ -16,7 +18,9 @@ add_executable(DataStructure_YWM_2nd
 #        BJFUOJ/213.c
 #        Leetcode/36.valid-sudoku.c
 #        Leetcode/15.3sum.c
-        Leetcode/46.permutations.c
+#        Leetcode/46.permutations.c
+#        Leetcode/39.combination-sum.c
+#        Leetcode/40.combination-sum-ii.c
         #        BJFUOJ/204.c
 #        BJFUOJ/205.c
         #        chap2/ds/array_list.h
