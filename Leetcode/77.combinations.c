@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAXSIZE 10000
+#define MAXSIZE 3628800
 
 void backtrack(
     int * state,
@@ -32,10 +32,10 @@ void backtrack(
         return ;
     }
 
-    for(int i = start; i <= choices; i ++ ) {
+    for(int i = start; i <= choices - (k - state_size) + 1 ; i ++ ) {  // 针对循环终止条件i <= choices 优化 当choices里的剩余元素长度已经不足k 直接结束循环
         state[state_size] = i;
         state_size ++;
-        backtrack(state, state_size, choices, k, res, return_size, return_col_size, start + 1);
+        backtrack(state, state_size, choices, k, res, return_size, return_col_size, i + 1);  // 此处应该是i+1而不是start+1
         state_size --;
 
     }
