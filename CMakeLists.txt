@@ -8,7 +8,11 @@ add_executable(DataStructure_YWM_2nd
         basic.h
 #        Leetcode/47.permutations-ii.c
 #        Leetcode/77.combinations.c
-        Leetcode/146.lru-cache.c
+#        Leetcode/146.lru-cache.c
+#        BJFUOJ/275.c
+#        BJFUOJ/276.c
+#        BJFUOJ/277.c
+        BJFUOJ/278.c
         #        BJFUOJ/206.c
 #        BJFUOJ/207.c
 #        BJFUOJ/208.c
