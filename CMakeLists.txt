@@ -6,7 +6,8 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-#        Leetcode/47.permutations-ii.c
+        Leetcode/93.restore-ip-addresses.c
+        #        Leetcode/47.permutations-ii.c
 #        Leetcode/77.combinations.c
 #        Leetcode/146.lru-cache.c
 #        BJFUOJ/275.c
@@ -14,7 +15,8 @@ add_executable(DataStructure_YWM_2nd
 #        BJFUOJ/277.c
 #        BJFUOJ/278.c
 #        BJFUOJ/279.c
-        Leetcode/207.course-schedule.c
+#        Leetcode/207.course-schedule.c
+#        Leetcode/210.course-schedule-ii.c
         #        BJFUOJ/206.c
 #        BJFUOJ/207.c
 #        BJFUOJ/208.c
