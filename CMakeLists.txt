@@ -6,7 +6,14 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-        Leetcode/93.restore-ip-addresses.c
+#        Leetcode/LeetCode75/345.reverse-vowels-of-a-string.c
+        Leetcode/LeetCode75/151.reverse-words-in-a-string.c
+        #        Leetcode/LeetCode75/605.can-place-flowers.c
+        #        BJFUOJ/contest/697/A.c
+#        Leetcode/LeetCode75/1768.merge-strings-alternately.c
+#        Leetcode/LeetCode75/1071.greatest-common-divisor-of-strings.c
+#        Leetcode/LeetCode75/1431.kids-with-the-greatest-number-of-candies.c
+        #        Leetcode/93.restore-ip-addresses.c
         #        Leetcode/47.permutations-ii.c
 #        Leetcode/77.combinations.c
 #        Leetcode/146.lru-cache.c
