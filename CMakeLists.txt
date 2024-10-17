@@ -6,11 +6,15 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-#        Leetcode/LeetCode75/345.reverse-vowels-of-a-string.c
+        Leetcode/LeetCode75/1679.max-number-of-k-sum-pairs.c
+        #        Leetcode/LeetCode75/11.container-with-most-water.c
+        #        Leetcode/LeetCode75/392.is-subsequence.c
+        #        Leetcode/LeetCode75/345.reverse-vowels-of-a-string.c
 #        Leetcode/LeetCode75/151.reverse-words-in-a-string.c
 #        Leetcode/LeetCode75/238.product-of-array-except-self.c
 #        Leetcode/LeetCode75/334.increasing-triplet-subsequence.c
-        Leetcode/LeetCode75/443.string-compression.c
+#        Leetcode/LeetCode75/443.string-compression.c
+#        Leetcode/LeetCode75/283.move-zeroes.c
         #        Leetcode/LeetCode75/605.can-place-flowers.c
         #        BJFUOJ/contest/697/A.c
 #        Leetcode/LeetCode75/1768.merge-strings-alternately.c
