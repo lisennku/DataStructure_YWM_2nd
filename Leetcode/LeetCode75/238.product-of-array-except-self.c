@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 int * prefix_product(int * nums, int numSize, int * pre_len) {
     int * pre = (int *) calloc(numSize, sizeof(int));
     if(pre == NULL)

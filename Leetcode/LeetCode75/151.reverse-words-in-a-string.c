@@ -11,6 +11,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+
 #define SPACE ' '
 
 char * trim_and_distinct_space(char * s) {

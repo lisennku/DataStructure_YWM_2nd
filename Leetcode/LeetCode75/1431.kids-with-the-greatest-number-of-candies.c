@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 bool* kidsWithCandies(int* candies, int candiesSize, int extraCandies, int* returnSize) {
     /*
      * 普通算法可以采取循环 每次循环给数组中一个元素加上extraCandies 然后判断该元素加上后是否是整个数组的最大值 但是时间负责度是O(n^2)

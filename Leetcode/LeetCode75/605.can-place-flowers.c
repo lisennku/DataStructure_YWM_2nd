@@ -11,6 +11,7 @@
 #include <stdlib.h>
 
 
+
 bool canPlaceFlowers(int* flowerbed, int flowerbedSize, int n) {
     /*
      * 从头遍历数组 查找可种植的位置

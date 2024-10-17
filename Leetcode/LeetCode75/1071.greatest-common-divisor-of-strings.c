@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 int calc_gcd(int a, int b) {
     while(b > 0) {
         int tmp = a % b;

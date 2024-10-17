@@ -11,6 +11,7 @@
 #include <string.h>
 
 
+
 char * mergeAlternately(char * word1, char * word2){
     int l1 = strlen(word1);
     int l2 = strlen(word2);
