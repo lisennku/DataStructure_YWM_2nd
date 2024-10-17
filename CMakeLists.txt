@@ -6,7 +6,9 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-        Leetcode/LeetCode75/1679.max-number-of-k-sum-pairs.c
+        Leetcode/LeetCode75/1456.maximum-number-of-vowels-in-a-substring-of-given-length.c
+        #        Leetcode/LeetCode75/643.maximum-average-subarray-i.c
+        #        Leetcode/LeetCode75/1679.max-number-of-k-sum-pairs.c
         #        Leetcode/LeetCode75/11.container-with-most-water.c
         #        Leetcode/LeetCode75/392.is-subsequence.c
         #        Leetcode/LeetCode75/345.reverse-vowels-of-a-string.c
