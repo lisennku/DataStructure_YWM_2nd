@@ -10,19 +10,25 @@
 #include <stdio.h>
 #include <string.h>
 
+int is_vowel(char c) {
+    if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+        return 1;
+    return 0;
+}
+
 int maxVowels(char* s, int k) {
     int cnt = 0;
     char vowels[] = "aeiou";
 
     for(int i = 0; i < k; i++)
-        if(strchr(vowels, s[i]) != NULL)
+        if(is_vowel(s[i]))
             cnt++;
     int max_cnt = cnt;
 
     for(int i = 1; i <= strlen(s) - k; i++) {
-        if(strchr(vowels, s[i-1]) != NULL)
+        if(is_vowel(s[i-1]))
             cnt --;
-        if(strchr(vowels, s[i + k - 1]) != NULL)
+        if(is_vowel(s[i + k - 1]))
             cnt ++;
         if(max_cnt < cnt)
             max_cnt = cnt;
