@@ -6,8 +6,11 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-#        BJFUOJ/216.c
-        BJFUOJ/217.c
+        BJFUOJ/226.c
+        #        BJFUOJ/216.c
+#        BJFUOJ/217.c
+#        BJFUOJ/223.c
+#        BJFUOJ/225.c
         #        BJFUOJ/214.c
 #        BJFUOJ/215.c
 #        Leetcode/148.sort-list.c
