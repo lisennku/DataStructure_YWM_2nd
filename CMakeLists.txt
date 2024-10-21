@@ -9,8 +9,10 @@ add_executable(DataStructure_YWM_2nd
 #        BJFUOJ/226.c
 #        Leetcode/LeetCode75/2095.delete-the-middle-node-of-a-linked-list.c
 #        Leetcode/LeetCode75/328.odd-even-linked-list.c
-        Leetcode/LeetCode75/206.reverse-linked-list.c
-        Leetcode/LeetCode75/2130.maximum-twin-sum-of-a-linked-list.c
+#        Leetcode/LeetCode75/206.reverse-linked-list.c
+#        Leetcode/LeetCode75/2130.maximum-twin-sum-of-a-linked-list.c
+#        Leetcode/LeetCode75/1732.find-the-highest-altitude.c
+        Leetcode/LeetCode75/724.find-pivot-index.c
         #        BJFUOJ/216.c
 #        BJFUOJ/217.c
 #        BJFUOJ/223.c
