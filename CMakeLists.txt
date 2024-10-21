@@ -6,13 +6,15 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-#        BJFUOJ/226.c
+        Leetcode/LeetCode75/1207.unique-number-of-occurrences.c
+        #        BJFUOJ/226.c
 #        Leetcode/LeetCode75/2095.delete-the-middle-node-of-a-linked-list.c
 #        Leetcode/LeetCode75/328.odd-even-linked-list.c
 #        Leetcode/LeetCode75/206.reverse-linked-list.c
 #        Leetcode/LeetCode75/2130.maximum-twin-sum-of-a-linked-list.c
 #        Leetcode/LeetCode75/1732.find-the-highest-altitude.c
-        Leetcode/LeetCode75/724.find-pivot-index.c
+#        Leetcode/LeetCode75/724.find-pivot-index.c
+#        Leetcode/LeetCode75/2215.find-the-difference-of-two-arrays.c
         #        BJFUOJ/216.c
 #        BJFUOJ/217.c
 #        BJFUOJ/223.c
