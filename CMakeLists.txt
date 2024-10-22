@@ -6,7 +6,9 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-        Leetcode/LeetCode75/1207.unique-number-of-occurrences.c
+#        Leetcode/LeetCode75/1207.unique-number-of-occurrences.c
+#        Leetcode/LeetCode75/1657.determine-if-two-strings-are-close.c
+        Leetcode/LeetCode75/2352.equal-row-and-column-pairs.c
         #        BJFUOJ/226.c
 #        Leetcode/LeetCode75/2095.delete-the-middle-node-of-a-linked-list.c
 #        Leetcode/LeetCode75/328.odd-even-linked-list.c
