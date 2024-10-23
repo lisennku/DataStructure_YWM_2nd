@@ -8,6 +8,7 @@
 char* predictPartyVictory(char* senate) {
     /*
      * 使用队列 遍历字符串
+     *
      * 
      */
     char * winner_r = "Radiant";
