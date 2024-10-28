@@ -7,7 +7,8 @@ add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
 #        Leetcode/LeetCode75/104.maximum-depth-of-binary-tree.c
-        Leetcode/LeetCode75/872.leaf-similar-trees.c
+#        Leetcode/LeetCode75/872.leaf-similar-trees.c
+        Leetcode/LeetCode75/1448.count-good-nodes-in-binary-tree.c
         #        BJFUOJ/218.c
 #        BJFUOJ/219.c
         #        Leetcode/LeetCode75/394.decode-string.c
