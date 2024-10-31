@@ -6,9 +6,11 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-#        Leetcode/LeetCode75/104.maximum-depth-of-binary-tree.c
+#        Leetcode/LeetCode75/1372.longest-zigzag-path-in-a-binary-tree.c
+        #        Leetcode/LeetCode75/104.maximum-depth-of-binary-tree.c
 #        Leetcode/LeetCode75/872.leaf-similar-trees.c
-        Leetcode/LeetCode75/1448.count-good-nodes-in-binary-tree.c
+#        Leetcode/LeetCode75/1448.count-good-nodes-in-binary-tree.c
+#        Leetcode/LeetCode75/437.path-sum-iii.c
         #        BJFUOJ/218.c
 #        BJFUOJ/219.c
         #        Leetcode/LeetCode75/394.decode-string.c
@@ -19,7 +21,7 @@ add_executable(DataStructure_YWM_2nd
         #        Leetcode/LeetCode75/1207.unique-number-of-occurrences.c
 #        Leetcode/LeetCode75/1657.determine-if-two-strings-are-close.c
 #        Leetcode/LeetCode75/2352.equal-row-and-column-pairs.c
-        #        BJFUOJ/226.c
+                BJFUOJ/226.c
 #        Leetcode/LeetCode75/2095.delete-the-middle-node-of-a-linked-list.c
 #        Leetcode/LeetCode75/328.odd-even-linked-list.c
 #        Leetcode/LeetCode75/206.reverse-linked-list.c

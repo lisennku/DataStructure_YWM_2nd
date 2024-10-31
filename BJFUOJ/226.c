@@ -1,6 +1,11 @@
 //
 // Created by lisen on 24-10-18.
 //
+
+/*
+ * 先逆向链表 再合并
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -56,47 +61,57 @@ void list_create(List * l1, List * l2, int cnt1, int cnt2) {
 
 }
 
-List list_merge_reverse(List l1, List l2) {
-    // 原想采取头插法 但是空间复杂度不是O(1)
-    // 使用栈 以数组模拟栈
-    Node * stack1[STACK_SIZE];
-    Node * stack2[STACK_SIZE];
-    int top1 = 0;
-    int top2 = 0;
+List list_reverse(List * l) {
+    Node * curr = (*l)->next;
+    Node * prev = NULL;
+    Node * next = NULL;
+    while(curr != NULL) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
 
+    List res;
+    list_init(&res);
+    res->next = prev;
+
+    return res;
+}
+
+List list_merge(List l1, List l2) {
     Node * p1 = l1->next;
     Node * p2 = l2->next;
+    List res ;
+    list_init(&res);
 
-    while(p1 != NULL) {
-        stack1[top1++] = p1;
+    List head = res;
+
+    while(p1 != NULL && p2 != NULL) {
+        if(p1->val > p2->val) {
+            head->next = p1;
+            head = head->next;
+            p1 = p1->next;
+        }
+        else {
+            head->next = p2;
+            head = head->next;
+            p2 = p2->next;
+        }
+    }
+
+    while(p1) {
+        head->next = p1;
+        head = head->next;
         p1 = p1->next;
     }
-    while(p2 != NULL) {
-        stack2[top2++] = p2;
+
+    while(p2) {
+        head->next = p2;
+        head = head->next;
         p2 = p2->next;
     }
-
-    Node * res = malloc(sizeof(Node));
-    Node * head = res;
-
-    top1--;
-    top2--;
-
-    while(top1 >= 0 && top2 >= 0) {
-        if(stack1[top1]->val > stack2[top2]->val)
-            head->next = stack1[top1--];
-        else
-            head->next = stack2[top2--];
-        head = head->next;
-    }
-    while(top1 >= 0) {
-        head->next = stack1[top1--];
-        head = head->next;
-    }
-    while(top2 >= 0) {
-        head->next = stack2[top2--];
-        head = head->next;
-    }
+    return res;
 }
 
 void list_display(List l) {
@@ -124,12 +139,10 @@ int main() {
         list_init(&l1);
         list_init(&l2);
         list_create(&l1, &l2, cnt1, cnt2);
-        List l = list_merge_reverse(l1, l2);
-        // list_display(l1);
-        // list_display(l2);
-        list_display(l);
+        List r1 = list_reverse(&l1);
+        List r2 = list_reverse(&l2);
+
+        List res = list_merge(r1, r2);
+        list_display(res);
     }
-
-
-
 }
