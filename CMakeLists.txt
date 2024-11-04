@@ -6,7 +6,13 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-#        BJFUOJ/227.c
+        BJFUOJ/232.c
+        #        BJFUOJ/231.c
+        #        BJFUOJ/228.c
+#        BJFUOJ/229.c
+#        BJFUOJ/230.c
+        #        tsinghua_dsa/mooc_ds_part1/pa1/1-range_query.c
+        #        BJFUOJ/227.c
         #        Leetcode/LeetCode75/1372.longest-zigzag-path-in-a-binary-tree.c
         #        Leetcode/LeetCode75/104.maximum-depth-of-binary-tree.c
 #        Leetcode/LeetCode75/872.leaf-similar-trees.c
