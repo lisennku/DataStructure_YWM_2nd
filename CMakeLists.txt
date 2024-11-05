@@ -6,7 +6,14 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-        BJFUOJ/232.c
+        dotcpp_ds/oj/tree/1697-二叉链表存储的二叉树.c
+        #        dotcpp_ds/oj/stack_and_queue/1681-行编辑程序.c
+        #        BJFUOJ/232.c
+#        dotcpp_ds/oj/link_list/1052-合并链表.c
+#        dotcpp_ds/oj/link_list/1585-链表数据求和操作.c
+#        dotcpp_ds/oj/link_list/1676-链表的基本操作.c
+#        dotcpp_ds/oj/link_list/1673-集合union.c
+#        "dotcpp_ds/oj/stack_and_queue/1680-八进制数.c"
         #        BJFUOJ/231.c
         #        BJFUOJ/228.c
 #        BJFUOJ/229.c
