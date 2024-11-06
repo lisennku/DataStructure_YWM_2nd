@@ -6,7 +6,9 @@ set(CMAKE_C_STANDARD 11)
 add_executable(DataStructure_YWM_2nd
 #        main.c
         basic.h
-        dotcpp_ds/oj/tree/1697-二叉链表存储的二叉树.c
+        dotcpp_ds/oj/tree/1701-自顶向下的赫夫曼编码.c
+        #        dotcpp_ds/oj/tree/1697-二叉链表存储的二叉树.c
+#        dotcpp_ds/oj/tree/170-自底向上的赫夫曼编码.c
         #        dotcpp_ds/oj/stack_and_queue/1681-行编辑程序.c
         #        BJFUOJ/232.c
 #        dotcpp_ds/oj/link_list/1052-合并链表.c
